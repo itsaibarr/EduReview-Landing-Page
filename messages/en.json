@@ -1,0 +1,322 @@
+{
+  "Navbar": {
+    "institution": {
+      "howItWorks": "How it works",
+      "whoItsFor": "Who it's for",
+      "faq": "FAQ",
+      "cta": "Join the Pilot"
+    },
+    "student": {
+      "theProblem": "The problem",
+      "howItWorks": "How it works",
+      "faq": "FAQ",
+      "cta": "Join Waitlist"
+    },
+    "aria": {
+      "closeMenu": "Close menu",
+      "openMenu": "Open menu"
+    }
+  },
+  "HeroStudent": {
+    "badge": {
+      "label": "Beta",
+      "detail": "Join the student waitlist"
+    },
+    "headline": {
+      "part1": "Your effort ",
+      "highlight": "deserves",
+      "part2": "to be seen."
+    },
+    "description": "Track your real progress, not just your grades. See your learning momentum grow.",
+    "cta": {
+      "primary": "Join Waitlist",
+      "secondary": "Learn more"
+    },
+    "socialProof": "Join students from Almaty, Astana, and beyond"
+  },
+  "HeroInstitution": {
+    "badge": {
+      "label": "Early Access",
+      "detail": "Now open for institutions"
+    },
+    "headline": {
+      "part1": "See who's ",
+      "highlight": "learning.",
+      "part2": "Not just who's passing."
+    },
+    "description": "Turn your existing academic data into engagement signals — with zero extra workload for teachers.",
+    "cta": {
+      "primary": "Join the Pilot",
+      "secondary": "See how it works"
+    },
+    "socialProof": {
+      "title": "Currently in early access with",
+      "universities": ["Nazarbayev University", "KIMEP", "SDU"]
+    }
+  },
+  "SplitEntry": {
+    "heading": "Who are you?",
+    "subheading": "Choose your path — we'll show you what matters.",
+    "institution": {
+      "label": "Schools & Universities",
+      "description": "Engagement analytics and growth signals for your institution."
+    },
+    "student": {
+      "label": "Students",
+      "description": "See your real progress. Track learning momentum beyond grades."
+    },
+    "getStarted": "Get started"
+  },
+  "ProblemStudent": {
+    "eyebrow": "What Students Face",
+    "headline": {
+      "line1": "You're growing.",
+      "line2": "The system doesn't ",
+      "highlight": "see it."
+    },
+    "description": "Grades measure outcomes, not effort. Real learning momentum stays hidden — from you, your teachers, and everyone else.",
+    "problems": [
+      {
+        "title": "Effort stays invisible",
+        "body": "You work hard — but nothing shows it. No way to see or share your real progress beyond a score on a page."
+      },
+      {
+        "title": "Grades flatten reality",
+        "body": "One bad week can erase months of growth. A single number can't capture a trajectory or reflect real momentum."
+      },
+      {
+        "title": "Motivation loses direction",
+        "body": "When progress isn't visible, it's hard to know if you're improving — or why pushing harder even matters."
+      }
+    ]
+  },
+  "ProblemInstitution": {
+    "eyebrow": "The Challenge",
+    "headline": {
+      "line1": "Grades show results.",
+      "line2": "They hide ",
+      "highlight": "progress."
+    },
+    "description": "The gap between how students experience learning and how institutions measure it — that's where disengagement hides.",
+    "problems": [
+      {
+        "title": "Grades miss the picture",
+        "body": "Schools track scores, not learning behavior. Disengagement builds silently — invisible until it's too late to act."
+      },
+      {
+        "title": "Signals arrive too late",
+        "body": "By the time grades drop, intervention windows have passed. The warning was always there — just unreadable."
+      },
+      {
+        "title": "Data exists. Insight doesn't.",
+        "body": "Academic systems collect mountains of data but surface no engagement signal. Numbers sit idle, decisions stay guesswork."
+      }
+    ]
+  },
+  "SolutionStudent": {
+    "eyebrow": "Your Progress",
+    "headline": {
+      "line1": "See your effort become",
+      "line2": "visible ",
+      "highlight": "growth."
+    },
+    "description": "EduReview builds a real-time picture of your learning momentum — tracking the behaviors that actually drive progress, not just the score at the end of the semester.",
+    "features": [
+      "See your real engagement score — not just a grade",
+      "Track growth relative to your own personal baseline",
+      "Watch your momentum build week over week"
+    ]
+  },
+  "SolutionInstitution": {
+    "eyebrow": "How It Works",
+    "headline": {
+      "line1": "Turn your data into",
+      "line2": "engagement ",
+      "highlight": "signals."
+    },
+    "description": "EduReview reads your existing academic records and converts attendance, submission patterns, and improvement trends into actionable engagement metrics — automatically.",
+    "features": [
+      "Works alongside your existing systems — no migration",
+      "Zero additional workload for teachers",
+      "Real-time engagement signals from existing academic data"
+    ]
+  },
+  "ValueBlocks": {
+    "eyebrow": "Built for Everyone",
+    "headline": {
+      "line1": "One platform.",
+      "line2": "Three ",
+      "highlight": "audiences."
+    },
+    "description": "EduReview fits into how your school already works — delivering value at every level without disruption.",
+    "blocks": [
+      {
+        "role": "For Admins",
+        "title": "Actionable engagement analytics",
+        "points": [
+          "Class-level and student-level engagement scores",
+          "Early warning signals before grades drop",
+          "Weekly trend reports — no extra setup"
+        ]
+      },
+      {
+        "role": "For Teachers",
+        "title": "Zero extra workload",
+        "points": [
+          "No new tools to learn or workflows to change",
+          "Insights derived from data you already produce",
+          "Alerts surface automatically when they matter"
+        ]
+      },
+      {
+        "role": "For Institutions",
+        "title": "Decisions backed by real data",
+        "points": [
+          "Detect disengagement patterns across cohorts",
+          "KPI-ready engagement reporting built in",
+          "Pilot-friendly — lightweight onboarding, fast results"
+        ]
+      }
+    ]
+  },
+  "FAQInstitution": {
+    "headline": "Frequently asked questions",
+    "subtitle": "Everything you need to know before applying for the pilot.",
+    "items": [
+      {
+        "q": "What data does EduReview actually use?",
+        "a": [
+          "Attendance records and consistency patterns",
+          "Assignment submission timing and completion rates",
+          "Grade improvement trends over time",
+          "No new data collection — only what your school already produces"
+        ]
+      },
+      {
+        "q": "Does this require any teacher input or extra workload?",
+        "a": "No. EduReview reads existing academic data automatically. Teachers do not need to change any workflows, learn new tools, or enter additional information."
+      },
+      {
+        "q": "How does the pilot programme work?",
+        "a": "We onboard your institution, connect to your data source (CSV import to start, full integration later), and deliver a working engagement dashboard within two weeks. The pilot runs for one semester with full support from our team."
+      },
+      {
+        "q": "How is student data handled and kept private?",
+        "a": "Student data is stored securely and never sold or shared with third parties. Individual scores are only visible to authorised institution staff. All data handling complies with applicable data protection regulations."
+      },
+      {
+        "q": "Which systems do you currently integrate with?",
+        "a": "We currently support manual and CSV-based data import. Native integration with Kundelik is in active development and will be available in the next phase."
+      },
+      {
+        "q": "Is there a cost to join the pilot?",
+        "a": "The pilot programme is free for the initial semester. We are focused on validating the product with a small number of institutions before moving to a paid model."
+      }
+    ]
+  },
+  "FAQStudent": {
+    "headline": "Frequently asked questions",
+    "subtitle": "Everything you need to know before joining the waitlist.",
+    "items": [
+      {
+        "q": "What does the Engagement Score actually measure?",
+        "a": [
+          "Attendance consistency and punctuality patterns",
+          "Assignment completion rate and submission timing",
+          "Grade improvement relative to your own personal baseline",
+          "Overall learning momentum across the semester"
+        ]
+      },
+      {
+        "q": "Can my teachers or school see my score?",
+        "a": "Your Engagement Score is personal by default. Aggregated, anonymised data may be visible to your institution, but your individual score and details are yours alone unless you choose to share them."
+      },
+      {
+        "q": "When will I get access to the platform?",
+        "a": "We are rolling out access school by school. Join the waitlist and we will notify you as soon as your school is on board. Priority access goes to students who sign up early."
+      },
+      {
+        "q": "Is this just another grade tracker?",
+        "a": "No. EduReview does not track grades — it tracks learning behavior. We measure the patterns that predict growth: consistency, effort, improvement trend. Your score can rise even when a single grade stays flat."
+      },
+      {
+        "q": "Is EduReview free for students?",
+        "a": "Yes. EduReview is free for students, always. The platform is funded through institutional partnerships, so you never pay."
+      }
+    ]
+  },
+  "CTAStudent": {
+    "eyebrow": "Early Access",
+    "headline": {
+      "line1": "Be first to see your",
+      "highlight": "real progress."
+    },
+    "description": "Join the waitlist. We're opening early access for students whose schools are part of the pilot.",
+    "form": {
+      "name": { "label": "Your name", "placeholder": "Amir Seitkali" },
+      "email": { "label": "Email", "placeholder": "you@mail.com" },
+      "school": { "label": "School or university", "placeholder": "Nazarbayev University" },
+      "question": {
+        "label": "What frustrates you most about how grades work?",
+        "optional": "(optional)",
+        "placeholder": "e.g. I study more than my friends but get the same grade…"
+      },
+      "submit": "Join the Waitlist",
+      "privacy": "We respect your privacy. No spam, ever."
+    },
+    "success": {
+      "title": "You're on the list",
+      "body": "We'll notify you when access opens at your school. Thank you."
+    }
+  },
+  "CTAInstitution": {
+    "eyebrow": "Pilot Programme",
+    "headline": {
+      "line1": "Join the ",
+      "highlight": "pilot."
+    },
+    "description": "Limited to 5 institutions this semester. Apply now and we'll reach out within 48 hours.",
+    "form": {
+      "name": { "label": "Full name", "placeholder": "Dr. Aizat Bekova" },
+      "role": {
+        "label": "Your role",
+        "placeholder": "Select role…",
+        "options": ["Rector / Director", "Academic Dean", "Department Head", "IT / Data Lead", "Other"]
+      },
+      "institution": { "label": "Institution name", "placeholder": "Nazarbayev University" },
+      "email": { "label": "Work email", "placeholder": "you@university.edu.kz" },
+      "question": {
+        "label": "Biggest challenge with student engagement",
+        "optional": "(optional)",
+        "placeholder": "e.g. We can't detect low engagement until grades are already affected…"
+      },
+      "submit": "Apply for the Pilot",
+      "disclaimer": "No commitment required. We'll set up a 30-min onboarding call."
+    },
+    "success": {
+      "title": "Application received",
+      "body": "We'll review your application and reach out within 48 hours."
+    }
+  },
+  "Footer": {
+    "tagline": "The learning engagement layer for schools and students in Central Asia.",
+    "nav": {
+      "product": {
+        "heading": "Product",
+        "howItWorks": "How it works",
+        "forInstitutions": "For institutions",
+        "forStudents": "For students",
+        "joinPilot": "Join the pilot"
+      },
+      "company": {
+        "heading": "Company",
+        "about": "About",
+        "contact": "Contact",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service"
+      }
+    },
+    "copyright": "© 2026 EduReview. All rights reserved.",
+    "language": "Language"
+  }
+}
