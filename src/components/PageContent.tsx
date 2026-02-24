@@ -7,6 +7,8 @@ import { HeroInstitution } from '@/components/sections/HeroInstitution'
 import { HeroStudent } from '@/components/sections/HeroStudent'
 import { ProblemInstitution } from '@/components/sections/ProblemInstitution'
 import { ProblemStudent } from '@/components/sections/ProblemStudent'
+import { SolutionInstitution } from '@/components/sections/SolutionInstitution'
+import { SolutionStudent } from '@/components/sections/SolutionStudent'
 
 export function PageContent() {
   const searchParams = useSearchParams()
@@ -19,12 +21,14 @@ export function PageContent() {
         <>
           <HeroInstitution />
           <ProblemInstitution />
+          <SolutionInstitution />
         </>
       )}
       {role === 'student' && (
         <>
           <HeroStudent />
           <ProblemStudent />
+          <SolutionStudent />
         </>
       )}
       {!role && <SplitEntry />}
