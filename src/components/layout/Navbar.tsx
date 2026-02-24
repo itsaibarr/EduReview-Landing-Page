@@ -55,11 +55,11 @@ export function Navbar() {
           <nav
             className="
               flex items-center gap-8
-              pl-5 pr-2 py-2
+              pl-5 pr-2 py-3
               bg-white/92 backdrop-blur-[16px]
               border border-border rounded-2xl
               shadow-nav
-              min-w-[280px] sm:min-w-[620px]
+              min-w-[450px] sm:min-w-[1200px]
             "
           >
             {/* Logo */}

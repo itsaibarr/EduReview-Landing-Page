@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FloatingNodeGraph } from '@/components/ui/FloatingNodeGraph'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { ArrowRight } from 'lucide-react'
@@ -41,15 +40,6 @@ export function HeroStudent() {
           WebkitMaskImage: 'linear-gradient(to bottom, white 55%, transparent 100%)',
         }}
       />
-
-      <motion.div
-        className="w-full max-w-[700px] mb-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, ease: 'easeOut' }}
-      >
-        <FloatingNodeGraph role="student" />
-      </motion.div>
 
       <div className="flex flex-col items-center text-center max-w-[700px] mx-auto">
 

@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FloatingNodeGraph } from '@/components/ui/FloatingNodeGraph'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { ArrowRight } from 'lucide-react'
@@ -41,19 +40,6 @@ export function HeroInstitution() {
           WebkitMaskImage: 'linear-gradient(to bottom, white 120%, transparent 100%)',
         }}
       />
-
-      {/* Node graph — desktop only, IS the hero visual */}
-      <motion.div
-        className="hidden sm:block w-full max-w-[760px] mb-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, ease: 'easeOut' }}
-      >
-        <FloatingNodeGraph role="institution" />
-      </motion.div>
-
-      {/* Mobile: headline is the visual */}
-      <div className="sm:hidden h-6" />
 
       {/* Content */}
       <div className="flex flex-col items-center text-center max-w-[700px] mx-auto">
