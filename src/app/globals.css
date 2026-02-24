@@ -5,6 +5,10 @@
 @theme {
   /* === Colors === */
 
+  /* Base */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
   /* Brand blue */
   --color-brand-50:  #EFF6FF;
   --color-brand-100: #DBEAFE;
