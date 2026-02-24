@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Brand font — loaded via Fontshare CDN in layout.tsx head */
+
+@theme {
+  /* === Colors === */
+
+  /* Brand blue */
+  --color-brand-50:  #EFF6FF;
+  --color-brand-100: #DBEAFE;
+  --color-brand-200: #BFDBFE;
+  --color-brand-400: #60A5FA;
+  --color-brand:     #2563EB;
+  --color-brand-700: #1D4ED8;
+  --color-brand-900: #1E3A8A;
+
+  /* Surface */
+  --color-surface: #F5F7FF;
+
+  /* Border */
+  --color-border:        #E0E7FF;
+  --color-border-subtle: #EEF2FF;
+
+  /* Text */
+  --color-text-primary:   #0A0A14;
+  --color-text-secondary: #3D4663;
+  --color-text-muted:     #8B92AD;
+
+  /* Semantic */
+  --color-success:      #16A34A;
+  --color-success-tint: #DCFCE7;
+  --color-warning:      #D97706;
+  --color-warning-tint: #FEF3C7;
+  --color-danger:       #DC2626;
+  --color-danger-tint:  #FEE2E2;
+
+  /* === Typography === */
+
+  /* Font families */
+  --font-sans: 'Satoshi', system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), monospace;
+
+  /* Font sizes — size / line-height / letter-spacing */
+  --text-display:  4.5rem;
+  --text-display--line-height:    1.08;
+  --text-display--letter-spacing: -0.04em;
+
+  --text-h1:  3rem;
+  --text-h1--line-height:    1.1;
+  --text-h1--letter-spacing: -0.03em;
+
+  --text-h2:  2rem;
+  --text-h2--line-height:    1.2;
+  --text-h2--letter-spacing: -0.02em;
+
+  --text-h3:  1.375rem;
+  --text-h3--line-height:    1.3;
+  --text-h3--letter-spacing: -0.01em;
+
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.7;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+
+  --text-label: 0.875rem;
+  --text-label--line-height:    1.4;
+  --text-label--letter-spacing: 0.01em;
+
+  --text-caption: 0.8125rem;
+  --text-caption--line-height:    1.5;
+  --text-caption--letter-spacing: 0.02em;
+
+  /* === Border radius === */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* === Shadows === */
+  --shadow-xs:    0 1px 2px rgba(0,0,0,0.04);
+  --shadow-sm:    0 1px 4px rgba(0,0,0,0.06), 0 4px 8px rgba(0,0,0,0.04);
+  --shadow-md:    0 4px 12px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-lg:    0 12px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-brand: 0 4px 16px rgba(37,99,235,0.20);
+  --shadow-nav:   0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+
+  /* === Animations === */
+  --animate-scroll-hint: scroll-hint 2s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Scroll hint keyframes */
+@keyframes scroll-hint {
+  0%, 100% { transform: translateY(0); opacity: 0.35; }
+  50%       { transform: translateY(6px); opacity: 0.35; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* CTA gradient background utility */
+@utility bg-gradient-cta {
+  background-image: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+}
+
+/* Section background utility */
+@utility bg-gradient-section {
+  background-image: linear-gradient(180deg, #EFF6FF 0%, #FFFFFF 100%);
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #0A0A14;
+    font-family: 'Satoshi', system-ui, sans-serif;
+  }
 }
