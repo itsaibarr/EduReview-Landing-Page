@@ -22,6 +22,8 @@ export function Footer() {
       links: [
         { label: t('nav.company.about'), href: '#' },
         { label: t('nav.company.contact'), href: 'mailto:hello@sharedureview.site' },
+        { label: t('nav.company.privacy'), href: '#' },
+        { label: t('nav.company.terms'), href: '#' },
       ],
     },
   ]
@@ -92,7 +94,7 @@ export function Footer() {
 
           <div className="flex items-center gap-5">
             <a
-              href="https://instagram.com/sharedureview"
+              href="https://www.instagram.com/sharedureview/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
