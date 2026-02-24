@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { ArrowRight } from 'lucide-react'
 import { scrollTo } from '@/lib/scroll'
+import { useTranslations } from 'next-intl'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -26,17 +27,19 @@ function FadeUp({ children, delay = 0, className }: {
 
 function AnnouncementBadge({ label, detail }: { label: string; detail: string }) {
   return (
-    <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-black/[0.08] bg-white text-[13px] leading-none select-none">
-      <span className="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0" />
+    <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-black/8 bg-white text-[13px] leading-none select-none">
+      <span className="w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
       <span className="font-semibold text-text-primary">{label}</span>
-      <span className="w-px h-3 bg-black/[0.12] flex-shrink-0" />
+      <span className="w-px h-3 bg-black/12 shrink-0" />
       <span className="text-text-muted">{detail}</span>
-      <ArrowRight size={12} className="text-text-muted flex-shrink-0" />
+      <ArrowRight size={12} className="text-text-muted shrink-0" />
     </div>
   )
 }
 
 export function HeroStudent() {
+  const t = useTranslations('HeroStudent');
+
   return (
     <section className="relative min-h-screen bg-white flex flex-col items-center justify-center px-6 pt-28 pb-16">
       {/* Grid texture — isolated in its own layer so the mask doesn't affect content */}
@@ -56,22 +59,21 @@ export function HeroStudent() {
       <div className="flex flex-col items-center text-center max-w-[840px] mx-auto">
 
         <FadeUp delay={0.1}>
-          <AnnouncementBadge label="Beta" detail="Join the student waitlist" />
+          <AnnouncementBadge label={t('badge.label')} detail={t('badge.detail')} />
         </FadeUp>
 
         <FadeUp delay={0.22} className="mt-5">
           <h1 className="text-[2.625rem] md:text-display font-bold text-text-primary leading-[1.08] tracking-[-0.04em]">
-            Your effort{' '}
-            <span className="text-brand">deserves</span>
+            {t('headline.part1')}
+            <span className="text-brand">{t('headline.highlight')}</span>
             <br />
-            to be seen.
+            {t('headline.part2')}
           </h1>
         </FadeUp>
 
         <FadeUp delay={0.36} className="mt-5">
           <p className="text-body-lg text-text-secondary max-w-[520px] leading-relaxed">
-            Track your real progress, not just your grades.
-            See your learning momentum grow.
+            {t('description')}
           </p>
         </FadeUp>
 
@@ -82,7 +84,7 @@ export function HeroStudent() {
             variant="primary"
             size="hero"
           >
-            Join Waitlist
+            {t('cta.primary')}
           </Button>
           <Button
             href="#how-it-works"
@@ -91,13 +93,13 @@ export function HeroStudent() {
             size="hero"
             className="!px-0 !py-0 text-[15px]"
           >
-            Learn more <ArrowRight size={15} />
+            {t('cta.secondary')} <ArrowRight size={15} />
           </Button>
         </FadeUp>
 
         <FadeUp delay={0.65} className="mt-14">
           <p className="text-caption text-text-muted">
-            Join students from Almaty, Astana, and beyond
+            {t('socialProof')}
           </p>
         </FadeUp>
       </div>

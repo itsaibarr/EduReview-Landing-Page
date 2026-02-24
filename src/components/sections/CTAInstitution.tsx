@@ -3,16 +3,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 const EASE = [0.16, 1, 0.3, 1] as const
-
-const ROLES = [
-  'Rector / Director',
-  'Academic Dean',
-  'Department Head',
-  'IT / Data Lead',
-  'Other',
-]
 
 type Status = 'idle' | 'loading' | 'success'
 
@@ -25,6 +18,8 @@ const inputClass = [
 
 export function CTAInstitution() {
   const [status, setStatus] = useState<Status>('idle')
+  const t = useTranslations('CTAInstitution')
+  const roleOptions = t.raw('form.role.options') as string[]
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -45,14 +40,13 @@ export function CTAInstitution() {
           className="text-center"
         >
           <p className="text-caption text-brand font-semibold tracking-[0.12em] uppercase">
-            Pilot Programme
+            {t('eyebrow')}
           </p>
           <h2 className="mt-4 text-h1 font-bold text-text-primary leading-[1.1] tracking-[-0.03em]">
-            Join the <span className="text-brand">pilot.</span>
+            {t('headline.line1')}<span className="text-brand">{t('headline.highlight')}</span>
           </h2>
           <p className="mt-4 text-body-lg text-text-secondary leading-relaxed max-w-[480px] mx-auto">
-            Limited to 5 institutions this semester. Apply now and we&apos;ll
-            reach out within 48 hours.
+            {t('description')}
           </p>
         </motion.div>
 
@@ -69,9 +63,9 @@ export function CTAInstitution() {
                 <CheckCircle2 size={28} className="text-brand" strokeWidth={1.5} />
               </div>
               <div>
-                <p className="text-h3 font-semibold text-text-primary">Application received</p>
+                <p className="text-h3 font-semibold text-text-primary">{t('success.title')}</p>
                 <p className="mt-2 text-body text-text-secondary">
-                  We&apos;ll review your application and reach out within 48 hours.
+                  {t('success.body')}
                 </p>
               </div>
             </div>
@@ -79,37 +73,37 @@ export function CTAInstitution() {
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-label font-medium text-text-primary">Full name</label>
-                  <input required className={inputClass} placeholder="Dr. Aizat Bekova" />
+                  <label className="text-label font-medium text-text-primary">{t('form.name.label')}</label>
+                  <input required className={inputClass} placeholder={t('form.name.placeholder')} />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-label font-medium text-text-primary">Your role</label>
+                  <label className="text-label font-medium text-text-primary">{t('form.role.label')}</label>
                   <select required className={inputClass}>
-                    <option value="">Select role…</option>
-                    {ROLES.map((r) => <option key={r}>{r}</option>)}
+                    <option value="">{t('form.role.placeholder')}</option>
+                    {roleOptions.map((r) => <option key={r}>{r}</option>)}
                   </select>
                 </div>
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-label font-medium text-text-primary">Institution name</label>
-                <input required className={inputClass} placeholder="Nazarbayev University" />
+                <label className="text-label font-medium text-text-primary">{t('form.institution.label')}</label>
+                <input required className={inputClass} placeholder={t('form.institution.placeholder')} />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-label font-medium text-text-primary">Work email</label>
-                <input required type="email" className={inputClass} placeholder="you@university.edu.kz" />
+                <label className="text-label font-medium text-text-primary">{t('form.email.label')}</label>
+                <input required type="email" className={inputClass} placeholder={t('form.email.placeholder')} />
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-label font-medium text-text-primary">
-                  Biggest challenge with student engagement{' '}
-                  <span className="text-text-muted font-normal">(optional)</span>
+                  {t('form.question.label')}{' '}
+                  <span className="text-text-muted font-normal">{t('form.question.optional')}</span>
                 </label>
                 <textarea
                   rows={3}
                   className={`${inputClass} resize-none`}
-                  placeholder="e.g. We can't detect low engagement until grades are already affected…"
+                  placeholder={t('form.question.placeholder')}
                 />
               </div>
 
@@ -121,12 +115,12 @@ export function CTAInstitution() {
                 {status === 'loading' ? (
                   <Loader2 size={16} className="animate-spin" />
                 ) : (
-                  <>Apply for the Pilot <ArrowRight size={16} /></>
+                  <>{t('form.submit')} <ArrowRight size={16} /></>
                 )}
               </button>
 
               <p className="text-caption text-text-muted text-center">
-                No commitment required. We&apos;ll set up a 30-min onboarding call.
+                {t('form.disclaimer')}
               </p>
             </form>
           )}

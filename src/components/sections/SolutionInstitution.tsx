@@ -2,14 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { CheckCircle2, AlertTriangle, TrendingUp, Users } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 const EASE = [0.16, 1, 0.3, 1] as const
-
-const FEATURES = [
-  'Works alongside your existing systems — no migration',
-  'Zero additional workload for teachers',
-  'Real-time engagement signals from existing academic data',
-]
 
 const BAR_VALUES = [42, 58, 53, 67, 71, 74, 78]
 const BAR_MAX = 80
@@ -122,6 +117,9 @@ function DashboardMockup() {
 }
 
 export function SolutionInstitution() {
+  const t = useTranslations('SolutionInstitution')
+  const features = t.raw('features') as string[]
+
   return (
     <section id="how-it-works" className="py-28 px-6 bg-surface border-t border-border-subtle">
       <div className="max-w-[1100px] mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
@@ -130,28 +128,26 @@ export function SolutionInstitution() {
         <div className="flex-1 max-w-[480px]">
           <FadeUp>
             <p className="text-caption text-brand font-semibold tracking-[0.12em] uppercase">
-              How It Works
+              {t('eyebrow')}
             </p>
           </FadeUp>
 
           <FadeUp delay={0.1} className="mt-4">
             <h2 className="text-h1 font-bold text-text-primary leading-[1.1] tracking-[-0.03em]">
-              Turn your data into
+              {t('headline.line1')}
               <br />
-              engagement <span className="text-brand">signals.</span>
+              {t('headline.line2')}<span className="text-brand">{t('headline.highlight')}</span>
             </h2>
           </FadeUp>
 
           <FadeUp delay={0.2} className="mt-5">
             <p className="text-body-lg text-text-secondary leading-relaxed">
-              EduReview reads your existing academic records and converts attendance,
-              submission patterns, and improvement trends into actionable engagement
-              metrics — automatically.
+              {t('description')}
             </p>
           </FadeUp>
 
           <FadeUp delay={0.3} className="mt-8 flex flex-col gap-3">
-            {FEATURES.map((f) => (
+            {features.map((f) => (
               <div key={f} className="flex items-start gap-3">
                 <CheckCircle2 size={17} className="text-brand flex-shrink-0 mt-0.5" strokeWidth={1.75} />
                 <p className="text-body text-text-secondary leading-snug">{f}</p>

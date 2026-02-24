@@ -1,25 +1,11 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Building2, GraduationCap } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 const EASE = [0.16, 1, 0.3, 1] as const
-
-const PATHS = [
-  {
-    role: 'institution' as const,
-    Icon: Building2,
-    label: 'Schools & Universities',
-    description: 'Engagement analytics and growth signals for your institution.',
-  },
-  {
-    role: 'student' as const,
-    Icon: GraduationCap,
-    label: 'Students',
-    description: 'See your real progress. Track learning momentum beyond grades.',
-  },
-]
 
 /**
  * Split entry screen — minimal gateway, not a content section.
@@ -28,6 +14,22 @@ const PATHS = [
  */
 export function SplitEntry() {
   const router = useRouter()
+  const t = useTranslations('SplitEntry')
+
+  const PATHS = [
+    {
+      role: 'institution' as const,
+      Icon: Building2,
+      label: t('institution.label'),
+      description: t('institution.description'),
+    },
+    {
+      role: 'student' as const,
+      Icon: GraduationCap,
+      label: t('student.label'),
+      description: t('student.description'),
+    },
+  ]
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white px-6">
@@ -48,9 +50,9 @@ export function SplitEntry() {
           <span className="text-[17px] font-bold text-text-primary tracking-tight">EduReview</span>
         </div>
 
-        <h2 className="text-h1 font-bold text-text-primary">Who are you?</h2>
+        <h2 className="text-h1 font-bold text-text-primary">{t('heading')}</h2>
         <p className="mt-3 text-body text-text-secondary">
-          Choose your path — we&apos;ll show you what matters.
+          {t('subheading')}
         </p>
       </motion.div>
 
@@ -61,7 +63,7 @@ export function SplitEntry() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.12 + i * 0.08, ease: EASE }}
-            onClick={() => router.push(`/?role=${role}`)}
+            onClick={() => router.push(`/?role=${role}` as any)}
             className="
               group flex-1
               flex flex-col items-start gap-4
@@ -81,7 +83,7 @@ export function SplitEntry() {
               <p className="mt-1.5 text-body text-text-secondary leading-relaxed">{description}</p>
             </div>
             <div className="mt-auto flex items-center gap-1 text-label text-brand font-medium group-hover:gap-2 transition-all duration-150">
-              Get started
+              {t('getStarted')}
               <span className="group-hover:translate-x-1 transition-transform duration-150">→</span>
             </div>
           </motion.button>

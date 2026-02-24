@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -17,6 +18,7 @@ const inputClass = [
 
 export function CTAStudent() {
   const [status, setStatus] = useState<Status>('idle')
+  const t = useTranslations('CTAStudent')
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -36,16 +38,15 @@ export function CTAStudent() {
           className="text-center"
         >
           <p className="text-caption text-brand font-semibold tracking-[0.12em] uppercase">
-            Early Access
+            {t('eyebrow')}
           </p>
           <h2 className="mt-4 text-h1 font-bold text-text-primary leading-[1.1] tracking-[-0.03em]">
-            Be first to see your
+            {t('headline.line1')}
             <br />
-            <span className="text-brand">real progress.</span>
+            <span className="text-brand">{t('headline.highlight')}</span>
           </h2>
           <p className="mt-4 text-body-lg text-text-secondary leading-relaxed max-w-[420px] mx-auto">
-            Join the waitlist. We&apos;re opening early access for students
-            whose schools are part of the pilot.
+            {t('description')}
           </p>
         </motion.div>
 
@@ -62,9 +63,9 @@ export function CTAStudent() {
                 <CheckCircle2 size={28} className="text-brand" strokeWidth={1.5} />
               </div>
               <div>
-                <p className="text-h3 font-semibold text-text-primary">You&apos;re on the list</p>
+                <p className="text-h3 font-semibold text-text-primary">{t('success.title')}</p>
                 <p className="mt-2 text-body text-text-secondary">
-                  We&apos;ll notify you when access opens at your school. Thank you.
+                  {t('success.body')}
                 </p>
               </div>
             </div>
@@ -72,29 +73,29 @@ export function CTAStudent() {
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-label font-medium text-text-primary">Your name</label>
-                  <input required className={inputClass} placeholder="Amir Seitkali" />
+                  <label className="text-label font-medium text-text-primary">{t('form.name.label')}</label>
+                  <input required className={inputClass} placeholder={t('form.name.placeholder')} />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-label font-medium text-text-primary">Email</label>
-                  <input required type="email" className={inputClass} placeholder="you@mail.com" />
+                  <label className="text-label font-medium text-text-primary">{t('form.email.label')}</label>
+                  <input required type="email" className={inputClass} placeholder={t('form.email.placeholder')} />
                 </div>
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-label font-medium text-text-primary">School or university</label>
-                <input required className={inputClass} placeholder="Nazarbayev University" />
+                <label className="text-label font-medium text-text-primary">{t('form.school.label')}</label>
+                <input required className={inputClass} placeholder={t('form.school.placeholder')} />
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-label font-medium text-text-primary">
-                  What frustrates you most about how grades work?{' '}
-                  <span className="text-text-muted font-normal">(optional)</span>
+                  {t('form.question.label')}{' '}
+                  <span className="text-text-muted font-normal">{t('form.question.optional')}</span>
                 </label>
                 <textarea
                   rows={3}
                   className={`${inputClass} resize-none`}
-                  placeholder="e.g. I study more than my friends but get the same grade…"
+                  placeholder={t('form.question.placeholder')}
                 />
               </div>
 
@@ -106,12 +107,12 @@ export function CTAStudent() {
                 {status === 'loading' ? (
                   <Loader2 size={16} className="animate-spin" />
                 ) : (
-                  <>Join the Waitlist <ArrowRight size={16} /></>
+                  <>{t('form.submit')} <ArrowRight size={16} /></>
                 )}
               </button>
 
               <p className="text-caption text-text-muted text-center">
-                We respect your privacy. No spam, ever.
+                {t('form.privacy')}
               </p>
             </form>
           )}

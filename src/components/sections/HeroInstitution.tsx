@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { ArrowRight } from 'lucide-react'
 import { scrollTo } from '@/lib/scroll'
+import { useTranslations } from 'next-intl'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -25,6 +26,8 @@ function FadeUp({ children, delay = 0, className }: {
 }
 
 export function HeroInstitution() {
+  const t = useTranslations('HeroInstitution');
+
   return (
     <section className="relative min-h-screen bg-white flex flex-col items-center justify-center px-6 pt-28 pb-16">
       {/* Grid texture — isolated in its own layer so the mask doesn't affect content */}
@@ -45,7 +48,7 @@ export function HeroInstitution() {
       <div className="flex flex-col items-center text-center max-w-[840px] mx-auto">
 
         <FadeUp delay={0.1}>
-          <AnnouncementBadge label="Early Access" detail="Now open for institutions" />
+          <AnnouncementBadge label={t('badge.label')} detail={t('badge.detail')} />
         </FadeUp>
 
         <FadeUp delay={0.22} className="mt-5">
@@ -55,17 +58,16 @@ export function HeroInstitution() {
             No CSS gradient text.
           */}
           <h1 className="text-[2.625rem] md:text-display font-bold text-text-primary leading-[1.08] tracking-[-0.04em]">
-            See who&apos;s{' '}
-            <span className="text-brand">learning.</span>
+            {t('headline.part1')}
+            <span className="text-brand">{t('headline.highlight')}</span>
             <br />
-            Not just who&apos;s passing.
+            {t('headline.part2')}
           </h1>
         </FadeUp>
 
         <FadeUp delay={0.36} className="mt-5">
           <p className="text-body-lg text-text-secondary max-w-[520px] leading-relaxed">
-            Turn your existing academic data into engagement signals —
-            with zero extra workload for teachers.
+            {t('description')}
           </p>
         </FadeUp>
 
@@ -76,7 +78,7 @@ export function HeroInstitution() {
             variant="primary"
             size="hero"
           >
-            Join the Pilot
+            {t('cta.primary')}
           </Button>
           <Button
             href="#how-it-works"
@@ -85,7 +87,7 @@ export function HeroInstitution() {
             size="hero"
             className="!px-0 !py-0 text-[15px]"
           >
-            See how it works <ArrowRight size={15} />
+            {t('cta.secondary')} <ArrowRight size={15} />
           </Button>
         </FadeUp>
 
@@ -102,22 +104,27 @@ export function HeroInstitution() {
 
 function AnnouncementBadge({ label, detail }: { label: string; detail: string }) {
   return (
-    <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-black/[0.08] bg-white text-[13px] leading-none select-none">
-      <span className="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0" />
+    <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-black/8 bg-white text-[13px] leading-none select-none">
+      <span className="w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
       <span className="font-semibold text-text-primary">{label}</span>
-      <span className="w-px h-3 bg-black/[0.12] flex-shrink-0" />
+      <span className="w-px h-3 bg-black/12 shrink-0" />
       <span className="text-text-muted">{detail}</span>
-      <ArrowRight size={12} className="text-text-muted flex-shrink-0" />
+      <ArrowRight size={12} className="text-text-muted shrink-0" />
     </div>
   )
 }
 
 function SocialProof() {
+  const t = useTranslations('HeroInstitution.socialProof');
+  
+  // We specify the type to let TS know we expect an array of strings
+  const universities: string[] = t.raw('universities');
+
   return (
     <div className="flex flex-col items-center gap-3">
-      <p className="text-caption text-text-muted">Currently in early access with</p>
+      <p className="text-caption text-text-muted">{t('title')}</p>
       <div className="flex items-center gap-8 opacity-40">
-        {['Nazarbayev University', 'KIMEP', 'SDU'].map((name) => (
+        {universities.map((name) => (
           <span key={name} className="text-label font-semibold text-text-secondary whitespace-nowrap">
             {name}
           </span>
