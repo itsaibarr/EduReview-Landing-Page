@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { ArrowRight } from 'lucide-react'
 
@@ -36,16 +35,16 @@ export function HeroInstitution() {
             'linear-gradient(to bottom, rgba(0,0,0,0.035) 1px, transparent 1px)',
           ].join(', '),
           backgroundSize: '40px 40px',
-          maskImage: 'linear-gradient(to bottom, white 120%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, white 120%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, white 45%, transparent 75%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, white 45%, transparent 75%)',
         }}
       />
 
       {/* Content */}
-      <div className="flex flex-col items-center text-center max-w-[700px] mx-auto">
+      <div className="flex flex-col items-center text-center max-w-[840px] mx-auto">
 
         <FadeUp delay={0.1}>
-          <Badge>For Schools &amp; Universities</Badge>
+          <AnnouncementBadge label="Early Access" detail="Now open for institutions" />
         </FadeUp>
 
         <FadeUp delay={0.22} className="mt-5">
@@ -86,6 +85,18 @@ export function HeroInstitution() {
 
       <ScrollHint />
     </section>
+  )
+}
+
+function AnnouncementBadge({ label, detail }: { label: string; detail: string }) {
+  return (
+    <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-black/[0.08] bg-white text-[13px] leading-none select-none">
+      <span className="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0" />
+      <span className="font-semibold text-text-primary">{label}</span>
+      <span className="w-px h-3 bg-black/[0.12] flex-shrink-0" />
+      <span className="text-text-muted">{detail}</span>
+      <ArrowRight size={12} className="text-text-muted flex-shrink-0" />
+    </div>
   )
 }
 
