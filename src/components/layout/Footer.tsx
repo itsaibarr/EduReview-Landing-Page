@@ -1,27 +1,33 @@
-import Link from 'next/link'
+'use client'
 
-const NAV = [
-  {
-    heading: 'Product',
-    links: [
-      { label: 'How it works', href: '#how-it-works' },
-      { label: 'For institutions', href: '/?role=institution' },
-      { label: 'For students', href: '/?role=student' },
-      { label: 'Join the pilot', href: '#pilot-cta' },
-    ],
-  },
-  {
-    heading: 'Company',
-    links: [
-      { label: 'About', href: '#' },
-      { label: 'Contact', href: 'mailto:hello@edureview.kz' },
-      { label: 'Privacy Policy', href: '#' },
-      { label: 'Terms of Service', href: '#' },
-    ],
-  },
-]
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/routing'
+import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
 
 export function Footer() {
+  const t = useTranslations('Footer')
+
+  const NAV = [
+    {
+      heading: t('nav.product.heading'),
+      links: [
+        { label: t('nav.product.howItWorks'), href: '#how-it-works' },
+        { label: t('nav.product.forInstitutions'), href: '/?role=institution' },
+        { label: t('nav.product.forStudents'), href: '/?role=student' },
+        { label: t('nav.product.joinPilot'), href: '#pilot-cta' },
+      ],
+    },
+    {
+      heading: t('nav.company.heading'),
+      links: [
+        { label: t('nav.company.about'), href: '#' },
+        { label: t('nav.company.contact'), href: 'mailto:hello@edureview.kz' },
+        { label: t('nav.company.privacy'), href: '#' },
+        { label: t('nav.company.terms'), href: '#' },
+      ],
+    },
+  ]
+
   return (
     <footer className="border-t border-border-subtle bg-white">
       {/* Top row */}
@@ -38,7 +44,7 @@ export function Footer() {
             <span className="text-[16px] font-bold text-text-primary tracking-tight">EduReview</span>
           </div>
           <p className="text-caption text-text-muted leading-relaxed">
-            The learning engagement layer for schools and students in Central Asia.
+            {t('tagline')}
           </p>
           <a
             href="mailto:hello@edureview.kz"
@@ -59,7 +65,7 @@ export function Footer() {
                 {links.map(({ label, href }) => (
                   <li key={label}>
                     <Link
-                      href={href}
+                      href={href as any}
                       className="text-body text-text-muted hover:text-text-primary transition-colors duration-150"
                     >
                       {label}
@@ -75,10 +81,17 @@ export function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-border-subtle">
-        <div className="max-w-[1100px] mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="max-w-[1100px] mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-caption text-text-muted">
-            © 2026 EduReview. All rights reserved.
+            {t('copyright')}
           </p>
+
+          {/* Language switcher — natural home in footer */}
+          <div className="flex items-center gap-3">
+            <span className="text-caption text-text-muted">{t('language')}</span>
+            <LanguageSwitcher />
+          </div>
+
           <div className="flex items-center gap-5">
             <a
               href="https://instagram.com"

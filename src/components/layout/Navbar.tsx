@@ -3,30 +3,13 @@
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { scrollTo } from '@/lib/scroll'
+import { useTranslations } from 'next-intl'
 
 type Role = 'institution' | 'student' | null
-
-const NAV_LINKS: Record<NonNullable<Role>, Array<{ label: string; href: string }>> = {
-  institution: [
-    { label: 'How it works', href: '#how-it-works' },
-    { label: 'Who it\'s for', href: '#value-blocks' },
-    { label: 'FAQ',          href: '#faq' },
-  ],
-  student: [
-    { label: 'The problem',  href: '#problem' },
-    { label: 'How it works', href: '#how-it-works' },
-    { label: 'FAQ',          href: '#faq' },
-  ],
-}
-
-const CTA: Record<NonNullable<Role>, { label: string; href: string }> = {
-  institution: { label: 'Join the Pilot', href: '#pilot-cta' },
-  student:     { label: 'Join Waitlist',  href: '#waitlist-cta' },
-}
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -36,6 +19,26 @@ export function Navbar() {
   const role: Role = param === 'institution' || param === 'student' ? param : null
   const [mobileOpen, setMobileOpen] = useState(false)
 
+  const t = useTranslations('Navbar')
+
+  const NAV_LINKS: Record<NonNullable<Role>, Array<{ label: string; href: string }>> = {
+    institution: [
+      { label: t('institution.howItWorks'), href: '#how-it-works' },
+      { label: t('institution.whoItsFor'), href: '#value-blocks' },
+      { label: t('institution.faq'),          href: '#faq' },
+    ],
+    student: [
+      { label: t('student.theProblem'),  href: '#problem' },
+      { label: t('student.howItWorks'), href: '#how-it-works' },
+      { label: t('student.faq'),          href: '#faq' },
+    ],
+  }
+
+  const CTA: Record<NonNullable<Role>, { label: string; href: string }> = {
+    institution: { label: t('institution.cta'), href: '#pilot-cta' },
+    student:     { label: t('student.cta'),  href: '#waitlist-cta' },
+  }
+
   return (
     <AnimatePresence>
       {role && (
@@ -44,8 +47,7 @@ export function Navbar() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -8, opacity: 0 }}
           transition={{ duration: 0.45, ease: EASE }}
-          /* Mobile: stretch edge-to-edge with margin. Desktop: center as island. */
-          className="fixed top-4 sm:top-6 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-50"
+          className="fixed top-4 sm:top-6 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-50 flex gap-2 sm:gap-4 items-start"
         >
           {/* ── Island bar ── */}
           <nav className="
@@ -54,6 +56,7 @@ export function Navbar() {
             bg-white/92 backdrop-blur-[16px]
             border border-border rounded-2xl
             shadow-nav
+            flex-1
             sm:min-w-[600px] lg:min-w-[820px]
           ">
             {/* Logo */}
@@ -86,7 +89,7 @@ export function Navbar() {
               onClick={(e) => { e.preventDefault(); scrollTo(CTA[role].href) }}
               variant="primary"
               size="default"
-              className="hidden sm:inline-flex shrink-0 ml-auto"
+              className="hidden sm:inline-flex shrink-0 ml-auto sm:ml-0"
             >
               {CTA[role].label}
             </Button>
@@ -95,7 +98,7 @@ export function Navbar() {
             <button
               onClick={() => setMobileOpen((o) => !o)}
               className="sm:hidden ml-auto p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface transition-all duration-150"
-              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-label={mobileOpen ? t('aria.closeMenu') : t('aria.openMenu')}
             >
               {mobileOpen ? <X size={20} strokeWidth={1.75} /> : <Menu size={20} strokeWidth={1.75} />}
             </button>
@@ -110,7 +113,7 @@ export function Navbar() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -8, scale: 0.98 }}
                 transition={{ duration: 0.2, ease: EASE }}
-                className="sm:hidden mt-2 flex flex-col gap-1 p-3 bg-white/96 backdrop-blur-[16px] border border-border rounded-2xl shadow-nav"
+                className="absolute top-full left-0 right-0 sm:hidden mt-2 flex flex-col gap-1 p-3 bg-white/96 backdrop-blur-[16px] border border-border rounded-2xl shadow-nav"
               >
                 {NAV_LINKS[role].map((link, i) => (
                   <motion.a
@@ -119,7 +122,6 @@ export function Navbar() {
                     onClick={(e) => {
                       e.preventDefault()
                       setMobileOpen(false)
-                      // Small delay lets the menu animate out before scrolling
                       setTimeout(() => scrollTo(link.href), 160)
                     }}
                     initial={{ opacity: 0, x: -8 }}
