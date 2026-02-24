@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import Lenis from '@studio-freight/lenis'
+import { registerLenis } from '@/lib/scroll'
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -11,6 +12,8 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       orientation: 'vertical',
       smoothWheel: true,
     })
+
+    registerLenis(lenis)
 
     function raf(time: number) {
       lenis.raf(time)

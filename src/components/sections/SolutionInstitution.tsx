@@ -123,7 +123,7 @@ function DashboardMockup() {
 
 export function SolutionInstitution() {
   return (
-    <section className="py-28 px-6 bg-surface border-t border-border-subtle">
+    <section id="how-it-works" className="py-28 px-6 bg-surface border-t border-border-subtle">
       <div className="max-w-[1100px] mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
 
         {/* Left — text */}

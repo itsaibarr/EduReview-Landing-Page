@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { ArrowRight } from 'lucide-react'
+import { scrollTo } from '@/lib/scroll'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -75,10 +76,21 @@ export function HeroStudent() {
         </FadeUp>
 
         <FadeUp delay={0.5} className="mt-9 flex flex-col sm:flex-row items-center gap-4">
-          <Button href="#waitlist-cta" variant="primary" size="hero">
+          <Button
+            href="#waitlist-cta"
+            onClick={(e) => { e.preventDefault(); scrollTo('#waitlist-cta') }}
+            variant="primary"
+            size="hero"
+          >
             Join Waitlist
           </Button>
-          <Button href="#how-it-works" variant="text" size="hero" className="!px-0 !py-0 text-[15px]">
+          <Button
+            href="#how-it-works"
+            onClick={(e) => { e.preventDefault(); scrollTo('#how-it-works') }}
+            variant="text"
+            size="hero"
+            className="!px-0 !py-0 text-[15px]"
+          >
             Learn more <ArrowRight size={15} />
           </Button>
         </FadeUp>

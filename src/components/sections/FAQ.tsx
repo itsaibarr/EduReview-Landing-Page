@@ -141,7 +141,7 @@ function FAQList({ items }: { items: Item[] }) {
 
 export function FAQInstitution() {
   return (
-    <section className="py-28 px-6 bg-white border-t border-border-subtle">
+    <section id="faq" className="py-28 px-6 bg-white border-t border-border-subtle">
       <div className="max-w-[1100px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -166,7 +166,7 @@ export function FAQInstitution() {
 
 export function FAQStudent() {
   return (
-    <section className="py-28 px-6 bg-white border-t border-border-subtle">
+    <section id="faq" className="py-28 px-6 bg-white border-t border-border-subtle">
       <div className="max-w-[1100px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

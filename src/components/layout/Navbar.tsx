@@ -6,20 +6,19 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { scrollTo } from '@/lib/scroll'
 
 type Role = 'institution' | 'student' | null
 
 const NAV_LINKS: Record<NonNullable<Role>, Array<{ label: string; href: string }>> = {
   institution: [
     { label: 'How it works', href: '#how-it-works' },
-    { label: 'For Schools',  href: '#for-schools' },
-    { label: 'For Teachers', href: '#for-teachers' },
-    { label: 'About',        href: '#about' },
+    { label: 'Who it\'s for', href: '#value-blocks' },
+    { label: 'FAQ',          href: '#faq' },
   ],
   student: [
     { label: 'How it works', href: '#how-it-works' },
-    { label: 'Progress',     href: '#progress' },
-    { label: 'About',        href: '#about' },
+    { label: 'FAQ',          href: '#faq' },
   ],
 }
 
@@ -71,7 +70,8 @@ export function Navbar() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-label text-text-secondary hover:text-text-primary transition-colors duration-150 whitespace-nowrap"
+                    onClick={(e) => { e.preventDefault(); scrollTo(link.href) }}
+                    className="text-label text-text-secondary hover:text-text-primary transition-colors duration-150 whitespace-nowrap cursor-pointer"
                   >
                     {link.label}
                   </a>
@@ -82,6 +82,7 @@ export function Navbar() {
             {/* Desktop CTA */}
             <Button
               href={CTA[role].href}
+              onClick={(e) => { e.preventDefault(); scrollTo(CTA[role].href) }}
               variant="primary"
               size="default"
               className="hidden sm:inline-flex shrink-0 ml-auto"
@@ -114,11 +115,16 @@ export function Navbar() {
                   <motion.a
                     key={link.label}
                     href={link.href}
-                    onClick={() => setMobileOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setMobileOpen(false)
+                      // Small delay lets the menu animate out before scrolling
+                      setTimeout(() => scrollTo(link.href), 160)
+                    }}
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.05, duration: 0.18, ease: EASE }}
-                    className="px-4 py-3 rounded-xl text-body text-text-secondary hover:text-text-primary hover:bg-surface transition-all duration-150"
+                    className="px-4 py-3 rounded-xl text-body text-text-secondary hover:text-text-primary hover:bg-surface transition-all duration-150 cursor-pointer"
                   >
                     {link.label}
                   </motion.a>
@@ -130,7 +136,11 @@ export function Navbar() {
                     variant="primary"
                     size="default"
                     className="w-full justify-center"
-                    onClick={() => setMobileOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setMobileOpen(false)
+                      setTimeout(() => scrollTo(CTA[role].href), 160)
+                    }}
                   >
                     {CTA[role].label}
                   </Button>

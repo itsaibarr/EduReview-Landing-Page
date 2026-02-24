@@ -58,7 +58,7 @@ function FadeUp({ children, delay = 0, className }: {
 
 export function ValueBlocks() {
   return (
-    <section className="py-28 px-6 bg-white border-t border-border-subtle">
+    <section id="value-blocks" className="py-28 px-6 bg-white border-t border-border-subtle">
       <div className="max-w-[1100px] mx-auto">
 
         <FadeUp className="text-center">
