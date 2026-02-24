@@ -42,7 +42,7 @@ export function HeroInstitution() {
 
       {/* Node graph — desktop only, IS the hero visual */}
       <motion.div
-        className="hidden sm:block w-full max-w-[680px] mb-10"
+        className="hidden sm:block w-full max-w-[760px] mb-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, ease: 'easeOut' }}

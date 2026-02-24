@@ -41,7 +41,7 @@ export function HeroStudent() {
     >
 
       <motion.div
-        className="w-full max-w-[600px] mb-10"
+        className="w-full max-w-[700px] mb-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, ease: 'easeOut' }}
