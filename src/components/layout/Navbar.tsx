@@ -17,6 +17,7 @@ const NAV_LINKS: Record<NonNullable<Role>, Array<{ label: string; href: string }
     { label: 'FAQ',          href: '#faq' },
   ],
   student: [
+    { label: 'The problem',  href: '#problem' },
     { label: 'How it works', href: '#how-it-works' },
     { label: 'FAQ',          href: '#faq' },
   ],
