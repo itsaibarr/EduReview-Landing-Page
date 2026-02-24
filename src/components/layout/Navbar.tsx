@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
 type Role = 'institution' | 'student' | null
@@ -22,19 +24,17 @@ const NAV_LINKS: Record<NonNullable<Role>, Array<{ label: string; href: string }
 }
 
 const CTA: Record<NonNullable<Role>, { label: string; href: string }> = {
-  institution: { label: 'Join the Pilot',  href: '#pilot-cta' },
-  student:     { label: 'Join Waitlist',   href: '#waitlist-cta' },
+  institution: { label: 'Join the Pilot', href: '#pilot-cta' },
+  student:     { label: 'Join Waitlist',  href: '#waitlist-cta' },
 }
 
-/**
- * Floating island navbar — centered bordered container, NOT edge-to-edge.
- * Logo left, links center, CTA right — all within one rounded container.
- * Hidden when no role is selected (split entry screen).
- */
+const EASE = [0.16, 1, 0.3, 1] as const
+
 export function Navbar() {
   const searchParams = useSearchParams()
   const param = searchParams.get('role')
   const role: Role = param === 'institution' || param === 'student' ? param : null
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
     <AnimatePresence>
@@ -43,36 +43,30 @@ export function Navbar() {
           initial={{ y: -12, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -8, opacity: 0 }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed top-6 left-1/2 z-50 -translate-x-1/2"
+          transition={{ duration: 0.45, ease: EASE }}
+          /* Mobile: stretch edge-to-edge with margin. Desktop: center as island. */
+          className="fixed top-4 sm:top-6 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-50"
         >
-          {/*
-            The island container.
-            pl-5: logo gets comfortable left padding
-            pr-2: CTA button sits flush to the right edge with its own padding
-            Asymmetry is intentional — mirrors CoreShift composition.
-          */}
-          <nav
-            className="
-              flex items-center gap-8
-              pl-5 pr-4 py-4
-              bg-white/92 backdrop-blur-[16px]
-              border border-border rounded-2xl
-              shadow-nav
-              min-w-[1000px] md:min-w-[1200px]
-            "
-          >
+          {/* ── Island bar ── */}
+          <nav className="
+            flex items-center gap-4
+            pl-4 sm:pl-5 pr-3 sm:pr-4 py-3 sm:py-3.5
+            bg-white/92 backdrop-blur-[16px]
+            border border-border rounded-2xl
+            shadow-nav
+            sm:min-w-[600px] lg:min-w-[820px]
+          ">
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center gap-2 shrink-0 text-[17px] font-bold text-text-primary tracking-tight hover:opacity-75 transition-opacity duration-150"
+              className="flex items-center gap-2 shrink-0 text-[16px] font-bold text-text-primary tracking-tight hover:opacity-75 transition-opacity duration-150"
             >
               <LogoMark />
               EduReview
             </Link>
 
-            {/* Nav links — centered, hidden on mobile */}
-            <ul className="hidden md:flex items-center gap-6 flex-1 justify-center">
+            {/* Desktop nav links — hidden on mobile */}
+            <ul className="hidden sm:flex items-center gap-6 flex-1 justify-center">
               {NAV_LINKS[role].map((link) => (
                 <li key={link.label}>
                   <a
@@ -85,16 +79,65 @@ export function Navbar() {
               ))}
             </ul>
 
-            {/* CTA — rounded-md (10px), not pill. Pill is for hero CTA only. */}
+            {/* Desktop CTA */}
             <Button
               href={CTA[role].href}
               variant="primary"
               size="default"
-              className="shrink-0"
+              className="hidden sm:inline-flex shrink-0 ml-auto"
             >
               {CTA[role].label}
             </Button>
+
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMobileOpen((o) => !o)}
+              className="sm:hidden ml-auto p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface transition-all duration-150"
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            >
+              {mobileOpen ? <X size={20} strokeWidth={1.75} /> : <Menu size={20} strokeWidth={1.75} />}
+            </button>
           </nav>
+
+          {/* ── Mobile dropdown menu ── */}
+          <AnimatePresence>
+            {mobileOpen && (
+              <motion.div
+                key="mobile-menu"
+                initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                transition={{ duration: 0.2, ease: EASE }}
+                className="sm:hidden mt-2 flex flex-col gap-1 p-3 bg-white/96 backdrop-blur-[16px] border border-border rounded-2xl shadow-nav"
+              >
+                {NAV_LINKS[role].map((link, i) => (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05, duration: 0.18, ease: EASE }}
+                    className="px-4 py-3 rounded-xl text-body text-text-secondary hover:text-text-primary hover:bg-surface transition-all duration-150"
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+
+                <div className="mt-1 pt-2 border-t border-border-subtle">
+                  <Button
+                    href={CTA[role].href}
+                    variant="primary"
+                    size="default"
+                    className="w-full justify-center"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {CTA[role].label}
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       )}
     </AnimatePresence>
