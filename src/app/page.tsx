@@ -1,3 +1,10 @@
+import { Suspense } from 'react'
+import { PageContent } from '@/components/PageContent'
+
 export default function Home() {
-  return <main>boot</main>
+  return (
+    <Suspense>
+      <PageContent />
+    </Suspense>
+  )
 }
