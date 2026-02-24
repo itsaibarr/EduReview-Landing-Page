@@ -3,11 +3,11 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
-type Status = 'idle' | 'loading' | 'success'
+type Status = 'idle' | 'loading' | 'success' | 'error'
 
 const inputClass = [
   'w-full px-4 py-3 rounded-md border border-border bg-white',
@@ -18,12 +18,42 @@ const inputClass = [
 
 export function CTAStudent() {
   const [status, setStatus] = useState<Status>('idle')
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [school, setSchool] = useState('')
+  const [frustration, setFrustration] = useState('')
   const t = useTranslations('CTAStudent')
+  const locale = useLocale()
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setStatus('loading')
-    setTimeout(() => setStatus('success'), 1400)
+    setErrorMsg(null)
+
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, school, frustration, locale }),
+      })
+
+      if (res.ok) {
+        setStatus('success')
+        return
+      }
+
+      const data = await res.json()
+      if (res.status === 409) {
+        setErrorMsg("You're already on the list.")
+      } else {
+        setErrorMsg(data.error ?? 'Something went wrong. Please try again.')
+      }
+      setStatus('error')
+    } catch {
+      setErrorMsg('Something went wrong. Please try again.')
+      setStatus('error')
+    }
   }
 
   return (
@@ -74,17 +104,36 @@ export function CTAStudent() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-label font-medium text-text-primary">{t('form.name.label')}</label>
-                  <input required className={inputClass} placeholder={t('form.name.placeholder')} />
+                  <input
+                    required
+                    className={inputClass}
+                    placeholder={t('form.name.placeholder')}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-label font-medium text-text-primary">{t('form.email.label')}</label>
-                  <input required type="email" className={inputClass} placeholder={t('form.email.placeholder')} />
+                  <input
+                    required
+                    type="email"
+                    className={inputClass}
+                    placeholder={t('form.email.placeholder')}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-label font-medium text-text-primary">{t('form.school.label')}</label>
-                <input required className={inputClass} placeholder={t('form.school.placeholder')} />
+                <input
+                  required
+                  className={inputClass}
+                  placeholder={t('form.school.placeholder')}
+                  value={school}
+                  onChange={(e) => setSchool(e.target.value)}
+                />
               </div>
 
               <div className="flex flex-col gap-1.5">
@@ -96,8 +145,14 @@ export function CTAStudent() {
                   rows={3}
                   className={`${inputClass} resize-none`}
                   placeholder={t('form.question.placeholder')}
+                  value={frustration}
+                  onChange={(e) => setFrustration(e.target.value)}
                 />
               </div>
+
+              {errorMsg && (
+                <p className="text-sm text-red-500 text-center">{errorMsg}</p>
+              )}
 
               <button
                 type="submit"
