@@ -3,11 +3,11 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
-type Status = 'idle' | 'loading' | 'success'
+type Status = 'idle' | 'loading' | 'success' | 'error'
 
 const inputClass = [
   'w-full px-4 py-3 rounded-md border border-border bg-white',
@@ -18,14 +18,44 @@ const inputClass = [
 
 export function CTAInstitution() {
   const [status, setStatus] = useState<Status>('idle')
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const [name, setName] = useState('')
+  const [role, setRole] = useState('')
+  const [institution, setInstitution] = useState('')
+  const [email, setEmail] = useState('')
+  const [challenge, setChallenge] = useState('')
   const t = useTranslations('CTAInstitution')
+  const locale = useLocale()
   const roleOptions = t.raw('form.role.options') as string[]
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setStatus('loading')
-    // Simulate async — replace with Supabase insert
-    setTimeout(() => setStatus('success'), 1400)
+    setErrorMsg(null)
+
+    try {
+      const res = await fetch('/api/pilot', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, role, institution, email, challenge, locale }),
+      })
+
+      if (res.ok) {
+        setStatus('success')
+        return
+      }
+
+      const data = await res.json()
+      if (res.status === 409) {
+        setErrorMsg("You've already applied.")
+      } else {
+        setErrorMsg(data.error ?? 'Something went wrong. Please try again.')
+      }
+      setStatus('error')
+    } catch {
+      setErrorMsg('Something went wrong. Please try again.')
+      setStatus('error')
+    }
   }
 
   return (
@@ -74,11 +104,22 @@ export function CTAInstitution() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-label font-medium text-text-primary">{t('form.name.label')}</label>
-                  <input required className={inputClass} placeholder={t('form.name.placeholder')} />
+                  <input
+                    required
+                    className={inputClass}
+                    placeholder={t('form.name.placeholder')}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-label font-medium text-text-primary">{t('form.role.label')}</label>
-                  <select required className={inputClass}>
+                  <select
+                    required
+                    className={inputClass}
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                  >
                     <option value="">{t('form.role.placeholder')}</option>
                     {roleOptions.map((r) => <option key={r}>{r}</option>)}
                   </select>
@@ -87,12 +128,25 @@ export function CTAInstitution() {
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-label font-medium text-text-primary">{t('form.institution.label')}</label>
-                <input required className={inputClass} placeholder={t('form.institution.placeholder')} />
+                <input
+                  required
+                  className={inputClass}
+                  placeholder={t('form.institution.placeholder')}
+                  value={institution}
+                  onChange={(e) => setInstitution(e.target.value)}
+                />
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-label font-medium text-text-primary">{t('form.email.label')}</label>
-                <input required type="email" className={inputClass} placeholder={t('form.email.placeholder')} />
+                <input
+                  required
+                  type="email"
+                  className={inputClass}
+                  placeholder={t('form.email.placeholder')}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
 
               <div className="flex flex-col gap-1.5">
@@ -104,8 +158,14 @@ export function CTAInstitution() {
                   rows={3}
                   className={`${inputClass} resize-none`}
                   placeholder={t('form.question.placeholder')}
+                  value={challenge}
+                  onChange={(e) => setChallenge(e.target.value)}
                 />
               </div>
+
+              {errorMsg && (
+                <p className="text-sm text-red-500 text-center">{errorMsg}</p>
+              )}
 
               <button
                 type="submit"
