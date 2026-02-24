@@ -33,12 +33,12 @@ export function HeroInstitution() {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: [
-            'linear-gradient(to right, rgba(0,0,0,0.055) 1px, transparent 1px)',
-            'linear-gradient(to bottom, rgba(0,0,0,0.055) 1px, transparent 1px)',
+            'linear-gradient(to right, rgba(0,0,0,0.035) 1px, transparent 1px)',
+            'linear-gradient(to bottom, rgba(0,0,0,0.035) 1px, transparent 1px)',
           ].join(', '),
           backgroundSize: '40px 40px',
-          maskImage: 'linear-gradient(to bottom, white 55%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, white 55%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, white 120%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, white 120%, transparent 100%)',
         }}
       />
 

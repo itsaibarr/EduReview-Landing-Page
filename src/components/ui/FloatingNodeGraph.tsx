@@ -15,7 +15,7 @@ interface NodeCard {
 const CARD_W = 160
 const CARD_H = 84
 const CENTER_X = 400
-const CENTER_Y = 240
+const CENTER_Y = 180
 
 const INSTITUTION_NODES: NodeCard[] = [
   { id: 'engagement', value: '87',   label: 'Engagement Index',  accent: '#2563EB', x: -260, y: -110, floatDelay: 0   },
@@ -71,13 +71,13 @@ export function FloatingNodeGraph({ role }: FloatingNodeGraphProps) {
   return (
     <div
       className="relative w-full flex items-center justify-center"
-      style={{ height: 480 }}
+      style={{ height: 360 }}
       aria-hidden="true"
     >
       {/* SVG connector lines — behind everything */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 800 480"
+        viewBox="0 0 800 360"
         preserveAspectRatio="xMidYMid meet"
       >
         {edges.map(([fromId, toId]) => {
