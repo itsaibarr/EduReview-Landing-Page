@@ -27,18 +27,20 @@ function FadeUp({ children, delay = 0, className }: {
 
 export function HeroStudent() {
   return (
-    <section
-      className="relative min-h-screen bg-white flex flex-col items-center justify-center px-6 pt-28 pb-16"
-      style={{
-        backgroundImage: [
-          'linear-gradient(to right, rgba(0,0,0,0.055) 1px, transparent 1px)',
-          'linear-gradient(to bottom, rgba(0,0,0,0.055) 1px, transparent 1px)',
-        ].join(', '),
-        backgroundSize: '40px 40px',
-        maskImage: 'linear-gradient(to bottom, white 55%, transparent 100%)',
-        WebkitMaskImage: 'linear-gradient(to bottom, white 55%, transparent 100%)',
-      }}
-    >
+    <section className="relative min-h-screen bg-white flex flex-col items-center justify-center px-6 pt-28 pb-16">
+      {/* Grid texture — isolated in its own layer so the mask doesn't affect content */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: [
+            'linear-gradient(to right, rgba(0,0,0,0.055) 1px, transparent 1px)',
+            'linear-gradient(to bottom, rgba(0,0,0,0.055) 1px, transparent 1px)',
+          ].join(', '),
+          backgroundSize: '40px 40px',
+          maskImage: 'linear-gradient(to bottom, white 55%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, white 55%, transparent 100%)',
+        }}
+      />
 
       <motion.div
         className="w-full max-w-[700px] mb-6"
