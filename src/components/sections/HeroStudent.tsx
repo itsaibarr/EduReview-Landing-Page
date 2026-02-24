@@ -27,7 +27,18 @@ function FadeUp({ children, delay = 0, className }: {
 
 export function HeroStudent() {
   return (
-    <section className="min-h-screen bg-white flex flex-col items-center justify-center px-6 pt-28 pb-16">
+    <section
+      className="relative min-h-screen bg-white flex flex-col items-center justify-center px-6 pt-28 pb-16"
+      style={{
+        backgroundImage: [
+          'linear-gradient(to right, rgba(0,0,0,0.055) 1px, transparent 1px)',
+          'linear-gradient(to bottom, rgba(0,0,0,0.055) 1px, transparent 1px)',
+        ].join(', '),
+        backgroundSize: '40px 40px',
+        maskImage: 'linear-gradient(to bottom, white 55%, transparent 100%)',
+        WebkitMaskImage: 'linear-gradient(to bottom, white 55%, transparent 100%)',
+      }}
+    >
 
       <motion.div
         className="w-full max-w-[600px] mb-10"
@@ -45,7 +56,7 @@ export function HeroStudent() {
         </FadeUp>
 
         <FadeUp delay={0.22} className="mt-5">
-          <h1 className="text-[2.625rem] md:text-display font-black text-text-primary leading-[1.08] tracking-[-0.04em]">
+          <h1 className="text-[2.625rem] md:text-display font-bold text-text-primary leading-[1.08] tracking-[-0.04em]">
             Your effort{' '}
             <span className="text-brand">deserves</span>
             <br />
