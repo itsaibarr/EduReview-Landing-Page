@@ -11,6 +11,7 @@ import { ProblemStudent } from '@/components/sections/ProblemStudent'
 import { SolutionInstitution } from '@/components/sections/SolutionInstitution'
 import { SolutionStudent } from '@/components/sections/SolutionStudent'
 import { ValueBlocks } from '@/components/sections/ValueBlocks'
+import { FAQInstitution, FAQStudent } from '@/components/sections/FAQ'
 import { CTAInstitution } from '@/components/sections/CTAInstitution'
 import { CTAStudent } from '@/components/sections/CTAStudent'
 
@@ -27,6 +28,7 @@ export function PageContent() {
           <ProblemInstitution />
           <SolutionInstitution />
           <ValueBlocks />
+          <FAQInstitution />
           <CTAInstitution />
           <Footer />
         </>
@@ -36,6 +38,7 @@ export function PageContent() {
           <HeroStudent />
           <ProblemStudent />
           <SolutionStudent />
+          <FAQStudent />
           <CTAStudent />
           <Footer />
         </>
