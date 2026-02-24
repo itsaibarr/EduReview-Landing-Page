@@ -27,7 +27,7 @@ function FadeUp({ children, delay = 0, className }: {
 
 function AnnouncementBadge({ label, detail }: { label: string; detail: string }) {
   return (
-    <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-black/8 bg-white text-[13px] leading-none select-none">
+    <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-border-subtle bg-white text-[13px] leading-none select-none">
       <span className="w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
       <span className="font-semibold text-text-primary">{label}</span>
       <span className="w-px h-3 bg-black/12 shrink-0" />
@@ -41,10 +41,10 @@ export function HeroStudent() {
   const t = useTranslations('HeroStudent');
 
   return (
-    <section className="relative min-h-screen bg-white flex flex-col items-center justify-center px-6 pt-28 pb-16">
+    <section className="relative isolate min-h-screen bg-white flex flex-col items-center justify-center px-6 pt-28 pb-16">
       {/* Grid texture — isolated in its own layer so the mask doesn't affect content */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage: [
             'linear-gradient(to right, rgba(0,0,0,0.035) 1px, transparent 1px)',
@@ -56,7 +56,7 @@ export function HeroStudent() {
         }}
       />
 
-      <div className="flex flex-col items-center text-center max-w-[840px] mx-auto">
+      <div className="relative z-10 flex flex-col items-center text-center max-w-[840px] mx-auto">
 
         <FadeUp delay={0.1}>
           <AnnouncementBadge label={t('badge.label')} detail={t('badge.detail')} />

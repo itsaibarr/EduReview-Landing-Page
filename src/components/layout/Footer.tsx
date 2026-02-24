@@ -21,7 +21,7 @@ export function Footer() {
       heading: t('nav.company.heading'),
       links: [
         { label: t('nav.company.about'), href: '#' },
-        { label: t('nav.company.contact'), href: 'mailto:hello@edureview.kz' },
+        { label: t('nav.company.contact'), href: 'mailto:hello@sharedureview.site' },
         { label: t('nav.company.privacy'), href: '#' },
         { label: t('nav.company.terms'), href: '#' },
       ],
@@ -47,10 +47,10 @@ export function Footer() {
             {t('tagline')}
           </p>
           <a
-            href="mailto:hello@edureview.kz"
+            href="mailto:hello@sharedureview.site"
             className="text-caption text-brand font-medium hover:underline underline-offset-2 w-fit"
           >
-            hello@edureview.kz →
+            hello@sharedureview.site →
           </a>
         </div>
 
@@ -94,7 +94,7 @@ export function Footer() {
 
           <div className="flex items-center gap-5">
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/sharedureview"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -105,7 +105,7 @@ export function Footer() {
               </svg>
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/sharedureview"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
