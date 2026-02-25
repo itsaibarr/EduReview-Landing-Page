@@ -318,5 +318,189 @@
     },
     "copyright": "© 2026 EduReview. All rights reserved.",
     "language": "Language"
+  },
+  "Privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated",
+    "backToHome": "Back to Home",
+    "intro": "This Privacy Policy explains how we collect, use, and protect information when you use our website and join our waitlist (the \"Service\"). The Service is currently a landing page and waitlist used to gather interest and feedback for a future education-related platform. By using the Service, you agree to the practices described in this policy.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "sections": {
+      "infoWeCollect": {
+        "title": "Information We Collect",
+        "infoYouProvide": "Information You Provide",
+        "intro": "When you join the waitlist, we may collect:",
+        "items": {
+          "email": "Email address",
+          "name": "Name (optional)",
+          "role": "Role (for example: student, teacher, or institution)",
+          "organization": "Organization or school name (optional)",
+          "voluntary": "Any information you voluntarily provide in forms or messages"
+        },
+        "infoAuto": "Information Collected Automatically",
+        "autoIntro": "We may automatically collect limited technical information such as:",
+        "autoItems": {
+          "browser": "Browser type and device information",
+          "ip": "IP address",
+          "pages": "Pages visited",
+          "referral": "Referral source",
+          "analytics": "Basic analytics data"
+        },
+        "autoPurpose": "This helps us understand how people use the website."
+      },
+      "howWeUse": {
+        "title": "How We Use Your Information",
+        "intro": "We use your information to:",
+        "items": {
+          "waitlist": "Manage and operate the waitlist",
+          "updates": "Send updates about the project",
+          "patterns": "Understand interest and usage patterns",
+          "improve": "Improve the website and future product direction",
+          "respond": "Respond to messages or feedback"
+        },
+        "noSale": "We do not sell your personal information."
+      },
+      "thirdParty": {
+        "title": "Third-Party Services",
+        "intro": "We use trusted third-party services to operate the website, including:",
+        "items": {
+          "hosting": "Hosting and backend infrastructure (e.g., Supabase)",
+          "analytics": "Analytics tools",
+          "email": "Email delivery providers"
+        },
+        "note": "These providers may process data on our behalf under their own privacy terms."
+      },
+      "dataStorage": {
+        "title": "Data Storage",
+        "intro": "Information submitted through the waitlist is stored using secure third-party infrastructure.",
+        "security": "We take reasonable steps to protect your data, but no system can guarantee absolute security."
+      },
+      "dataRetention": {
+        "title": "Data Retention",
+        "intro": "We keep waitlist information for as long as necessary to:",
+        "items": {
+          "operate": "operate the waitlist",
+          "communicate": "communicate project updates",
+          "plan": "plan future development"
+        },
+        "deletion": "You may request deletion of your information at any time by contacting us."
+      },
+      "children": {
+        "title": "Children and Educational Use",
+        "intro": "Our project is intended for educational contexts, and some users who join the waitlist may be under 18. At this stage:",
+        "items": {
+          "informational": "The Service is informational only.",
+          "noTracking": "We do not provide educational tracking, grading, or analytics services yet.",
+          "noRecords": "We do not knowingly collect sensitive educational records."
+        },
+        "contact": "If you believe personal information from a child has been submitted inappropriately, contact us and we will remove it."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "intro": "We may use cookies or similar technologies to:",
+        "items": {
+          "functioning": "keep the site functioning",
+          "patterns": "understand usage patterns",
+          "performance": "improve performance"
+        },
+        "control": "You can control cookies through your browser settings."
+      },
+      "externalLinks": {
+        "title": "External Links",
+        "intro": "Our website may contain links to other websites. We are not responsible for their privacy practices."
+      },
+      "changes": {
+        "title": "Changes to This Policy",
+        "intro": "We may update this Privacy Policy from time to time. The updated version will be posted on this page with a revised date."
+      },
+      "contact": {
+        "title": "Contact",
+        "intro": "If you have questions about this Privacy Policy, contact:"
+      }
+    }
+  },
+  "Terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated",
+    "backToHome": "Back to Home",
+    "intro": "These Terms of Service (\"Terms\") govern your use of this website and waitlist (the \"Service\"). By accessing or using the Service, you agree to these Terms.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "sections": {
+      "nature": {
+        "title": "Nature of the Service",
+        "intro": "The Service currently consists of:",
+        "items": {
+          "landing": "an informational landing page",
+          "waitlist": "a waitlist for a future product"
+        },
+        "note": "The product described on the website is under development and may change.",
+        "noGuarantee": "Joining the waitlist does not guarantee access, features, or availability."
+      },
+      "eligibility": {
+        "title": "Eligibility",
+        "intro": "You may use the Service if:",
+        "items": {
+          "age": "you are at least 13 years old, or",
+          "permission": "you have permission from a parent, guardian, or educational institution where required."
+        }
+      },
+      "waitlist": {
+        "title": "Waitlist Participation",
+        "intro": "By submitting your information:",
+        "items": {
+          "contact": "you agree that we may contact you about updates or early access",
+          "accurate": "you confirm that the information you provide is accurate."
+        },
+        "removal": "You may request removal from the waitlist at any time."
+      },
+      "acceptableUse": {
+        "title": "Acceptable Use",
+        "intro": "You agree not to:",
+        "items": {
+          "unlawful": "use the Service for unlawful purposes",
+          "interfere": "attempt to interfere with website functionality",
+          "malicious": "submit malicious or harmful content",
+          "impersonate": "impersonate others or provide false information."
+        }
+      },
+      "intellectualProperty": {
+        "title": "Intellectual Property",
+        "intro": "All content on this website — including branding, text, design, and visuals — belongs to us unless otherwise stated.",
+        "note": "You may not copy or reuse content without permission."
+      },
+      "noWarranty": {
+        "title": "No Warranty",
+        "intro": "The Service is provided \"as is\" and for informational purposes only.",
+        "notGuarantee": "We do not guarantee:",
+        "items": {
+          "availability": "availability of the future product",
+          "accuracy": "accuracy of all information",
+          "uninterrupted": "uninterrupted access to the website."
+        }
+      },
+      "limitation": {
+        "title": "Limitation of Liability",
+        "intro": "To the maximum extent permitted by law, we are not liable for:",
+        "items": {
+          "losses": "losses resulting from use of the website",
+          "inability": "inability to access the Service",
+          "reliance": "reliance on information presented."
+        }
+      },
+      "changesService": {
+        "title": "Changes to the Service",
+        "intro": "We may modify, update, or discontinue the Service at any time without notice."
+      },
+      "changesTerms": {
+        "title": "Changes to These Terms",
+        "intro": "We may update these Terms periodically. Continued use of the Service means you accept the updated Terms."
+      },
+      "contact": {
+        "title": "Contact",
+        "intro": "Questions about these Terms?"
+      }
+    }
   }
 }
