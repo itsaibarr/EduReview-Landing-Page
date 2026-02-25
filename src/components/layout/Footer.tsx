@@ -22,8 +22,8 @@ export function Footer() {
       links: [
         { label: t('nav.company.about'), href: '#' },
         { label: t('nav.company.contact'), href: 'mailto:hello@sharedureview.site' },
-        { label: t('nav.company.privacy'), href: '#' },
-        { label: t('nav.company.terms'), href: '#' },
+        { label: t('nav.company.privacy'), href: '/privacy' },
+        { label: t('nav.company.terms'), href: '/terms' },
       ],
     },
   ]

@@ -126,4 +126,97 @@
     color: #0A0A14;
     font-family: 'Satoshi', system-ui, sans-serif;
   }
+
+  /* Adjust font-weight for non-English locales (Cyrillic scripts) */
+  /* Satoshi font doesn't support Cyrillic, so system fonts render heavier */
+  html[lang="ru"] body,
+  html[lang="kk"] body {
+    font-weight: 400;
+  }
+
+  html[lang="ru"] .font-bold,
+  html[lang="kk"] .font-bold {
+    font-weight: 600;
+  }
+
+  html[lang="ru"] .font-semibold,
+  html[lang="kk"] .font-semibold {
+    font-weight: 500;
+  }
+
+  html[lang="ru"] .font-medium,
+  html[lang="kk"] .font-medium {
+    font-weight: 400;
+  }
+}
+
+/* === Policy Page Styles (Obsidian/Notion-style) === */
+.prose-policy {
+  font-family: 'Satoshi', system-ui, sans-serif;
+}
+
+.prose-policy p {
+  color: var(--color-text-secondary);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  margin-bottom: 1rem;
+}
+
+.prose-policy ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.prose-policy li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-secondary);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+}
+
+.prose-policy li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-brand);
+  border-radius: 50%;
+}
+
+.prose-policy .callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  margin: 1.25rem 0;
+}
+
+.prose-policy .callout-icon {
+  flex-shrink: 0;
+  margin-top: 0.1em;
+  color: var(--color-brand);
+}
+
+.prose-policy .callout-info {
+  background-color: var(--color-brand-50);
+  border-left: 3px solid var(--color-brand);
+}
+
+.prose-policy .callout-contact {
+  background-color: var(--color-surface);
+  border-left: 3px solid var(--color-brand);
+}
+
+.prose-policy .callout p {
+  margin: 0;
+}
+
+.prose-policy .callout a {
+  font-size: var(--text-body);
 }
