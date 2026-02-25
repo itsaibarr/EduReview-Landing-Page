@@ -1,22 +1,36 @@
-'use client'
+# SolutionStudent Interactive Demo — Implementation Plan
 
-import { useState, useEffect } from 'react'
+> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+
+**Goal:** Transform the static student mockup into an interactive tabbed demo with three views (Progress, Momentum, Journey), animated transitions, and emotional storytelling.
+
+**Architecture:** Single file edit (`SolutionStudent.tsx`) + translation files. All changes follow the pattern established in `SolutionInstitution.tsx`.
+
+**Tech Stack:** React, TypeScript, Framer Motion, Lucide React, Tailwind CSS (project tokens only).
+
+**Design doc:** `docs/plans/2026-02-25-solution-student-demo-design.md`
+
+---
+
+## Task 1: Add state management, tab types, and mock data constants
+
+**Files:**
+- Modify: `src/components/sections/SolutionStudent.tsx`
+
+### Step 1: Add AnimatePresence import and new Lucide icons
+
+Find line 3-4 (the imports). Update them:
+
+```tsx
 import { motion, AnimatePresence } from 'framer-motion'
 import { CheckCircle2, Flame, TrendingUp, Zap, Target, Award } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+```
 
-const EASE = [0.16, 1, 0.3, 1] as const
+### Step 2: Add tab type and mock data constants
 
-const WEEK_BARS = [38, 52, 49, 61, 67, 74, 82]
-const WEEK_LABELS = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
-const BAR_MAX = 85
+Add these constants after the existing constants (after `SCORE_DASH` definition, around line 18):
 
-// Circle: r=40, circumference ≈ 251.3
-const RADIUS = 40
-const CIRC = 2 * Math.PI * RADIUS
-const SCORE = 82
-const SCORE_DASH = (SCORE / 100) * CIRC
-
+```tsx
 // ─── Tab State ────────────────────────────────────────────────────────────────
 
 type Tab = 'progress' | 'momentum' | 'journey'
@@ -50,7 +64,35 @@ const MILESTONES = [
 
 const JOURNEY_BEFORE = { score: 38, rank: 67, streak: 0 }
 const JOURNEY_NOW = { score: 82, rank: 18, streak: 9 }
+```
 
+### Step 3: Verify build
+
+```bash
+npm run build 2>&1 | tail -20
+```
+
+Expected: no errors. New constants are defined but not yet used.
+
+### Step 4: Commit
+
+```bash
+git add src/components/sections/SolutionStudent.tsx
+git commit -m "feat: add tab type and mock data constants for student demo"
+```
+
+---
+
+## Task 2: Create useCounter hook and buildLinePath utility
+
+**Files:**
+- Modify: `src/components/sections/SolutionStudent.tsx`
+
+### Step 1: Add useCounter hook
+
+Add this hook after the constants section (after `JOURNEY_NOW`, before `FadeUp`):
+
+```tsx
 // ─── Hooks ────────────────────────────────────────────────────────────────────
 
 function useCounter(target: number, duration = 900) {
@@ -82,25 +124,43 @@ function buildLinePath(points: number[], max: number, width: number, height: num
   const fill = `${line} L ${coords[coords.length - 1].x.toFixed(1)} ${height} L 0 ${height} Z`
   return { line, fill, lastX: coords[coords.length - 1].x, lastY: coords[coords.length - 1].y }
 }
+```
 
-function FadeUp({ children, delay = 0, className }: {
-  children: React.ReactNode
-  delay?: number
-  className?: string
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.65, delay, ease: EASE }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  )
-}
+### Step 2: Add useState import
 
+Update line 1 to include useState:
+
+```tsx
+import { useState, useEffect } from 'react'
+```
+
+### Step 3: Verify build
+
+```bash
+npm run build 2>&1 | tail -20
+```
+
+Expected: no errors.
+
+### Step 4: Commit
+
+```bash
+git add src/components/sections/SolutionStudent.tsx
+git commit -m "feat: add useCounter hook and buildLinePath utility for student demo"
+```
+
+---
+
+## Task 3: Create ProgressView panel component
+
+**Files:**
+- Modify: `src/components/sections/SolutionStudent.tsx`
+
+### Step 1: Add ProgressView component
+
+Add this component after the `FadeUp` component, before `ProgressMockup`:
+
+```tsx
 // ─── Panel Components ────────────────────────────────────────────────────────
 
 function ProgressView() {
@@ -188,7 +248,35 @@ function ProgressView() {
     </div>
   )
 }
+```
 
+### Step 2: Verify build
+
+```bash
+npm run build 2>&1 | tail -20
+```
+
+Expected: no errors.
+
+### Step 3: Commit
+
+```bash
+git add src/components/sections/SolutionStudent.tsx
+git commit -m "feat: add ProgressView panel component for student demo"
+```
+
+---
+
+## Task 4: Create MomentumView panel component
+
+**Files:**
+- Modify: `src/components/sections/SolutionStudent.tsx`
+
+### Step 1: Add MomentumView component
+
+Add this component after `ProgressView`:
+
+```tsx
 function MomentumView() {
   const streak = useCounter(PROGRESS_STATS.streak)
   const completedDays = CONSISTENCY_DAYS.filter(d => d.completed).length
@@ -282,7 +370,35 @@ function MomentumView() {
     </div>
   )
 }
+```
 
+### Step 2: Verify build
+
+```bash
+npm run build 2>&1 | tail -20
+```
+
+Expected: no errors.
+
+### Step 3: Commit
+
+```bash
+git add src/components/sections/SolutionStudent.tsx
+git commit -m "feat: add MomentumView panel component for student demo"
+```
+
+---
+
+## Task 5: Create JourneyView panel component
+
+**Files:**
+- Modify: `src/components/sections/SolutionStudent.tsx`
+
+### Step 1: Add JourneyView component
+
+Add this component after `MomentumView`:
+
+```tsx
 function JourneyView() {
   const beforeScore = useCounter(JOURNEY_BEFORE.score)
   const nowScore = useCounter(JOURNEY_NOW.score)
@@ -417,7 +533,35 @@ function JourneyView() {
     </div>
   )
 }
+```
 
+### Step 2: Verify build
+
+```bash
+npm run build 2>&1 | tail -20
+```
+
+Expected: no errors.
+
+### Step 3: Commit
+
+```bash
+git add src/components/sections/SolutionStudent.tsx
+git commit -m "feat: add JourneyView panel component for student demo"
+```
+
+---
+
+## Task 6: Create StudentDemoWindow component with tabs
+
+**Files:**
+- Modify: `src/components/sections/SolutionStudent.tsx`
+
+### Step 1: Add StudentDemoWindow component
+
+Add this component after `JourneyView`, before the `SolutionStudent` export:
+
+```tsx
 // ─── Demo Window ──────────────────────────────────────────────────────────────
 
 const TAB_ITEMS: { id: Tab; label: string; icon: React.ReactNode }[] = [
@@ -483,16 +627,50 @@ function StudentDemoWindow() {
     </div>
   )
 }
+```
 
+### Step 2: Verify build
+
+```bash
+npm run build 2>&1 | tail -20
+```
+
+Expected: no errors.
+
+### Step 3: Commit
+
+```bash
+git add src/components/sections/SolutionStudent.tsx
+git commit -m "feat: add StudentDemoWindow component with tabbed navigation"
+```
+
+---
+
+## Task 7: Update SolutionStudent section to use new demo window
+
+**Files:**
+- Modify: `src/components/sections/SolutionStudent.tsx`
+
+### Step 1: Replace the section component
+
+Replace the entire `SolutionStudent` function with:
+
+```tsx
 export function SolutionStudent() {
   const t = useTranslations('SolutionStudent')
+  const features = t.raw('features') as string[]
 
   return (
-    <section id="how-it-works" className="py-28 px-6 bg-white border-t border-border-subtle">
-      <div className="max-w-[1100px] mx-auto">
+    <section id="how-it-works" className="py-28 px-6 bg-surface border-t border-border-subtle">
+      <div className="max-w-[1100px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-20">
 
-        {/* Centered header */}
-        <div className="text-center max-w-[600px] mx-auto">
+        {/* Left — interactive demo */}
+        <div className="flex-1 flex justify-center lg:justify-start w-full">
+          <StudentDemoWindow />
+        </div>
+
+        {/* Right — text */}
+        <div className="flex-1 max-w-[480px]">
           <FadeUp>
             <p className="text-caption text-brand font-semibold tracking-[0.12em] uppercase">
               {t('eyebrow')}
@@ -508,20 +686,190 @@ export function SolutionStudent() {
           </FadeUp>
 
           <FadeUp delay={0.2} className="mt-5">
-            <p className="text-body-lg text-text-secondary leading-relaxed max-w-[480px] mx-auto">
+            <p className="text-body-lg text-text-secondary leading-relaxed">
               {t('description')}
             </p>
           </FadeUp>
-        </div>
 
-        {/* Demo window */}
-        <FadeUp delay={0.3} className="mt-16">
-          <div className="scale-[0.85] origin-top flex justify-center">
-            <StudentDemoWindow />
-          </div>
-        </FadeUp>
+          <FadeUp delay={0.3} className="mt-8 flex flex-col gap-3">
+            {features.map((f) => (
+              <div key={f} className="flex items-start gap-3">
+                <CheckCircle2 size={17} className="text-brand flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                <p className="text-body text-text-secondary leading-snug">{f}</p>
+              </div>
+            ))}
+          </FadeUp>
+        </div>
 
       </div>
     </section>
   )
 }
+```
+
+### Step 2: Remove the old ProgressMockup component
+
+Delete the `ProgressMockup` function (it's now replaced by the panel components).
+
+### Step 3: Verify build
+
+```bash
+npm run build 2>&1 | tail -20
+```
+
+Expected: no errors. The section now uses the new interactive demo.
+
+### Step 4: Commit
+
+```bash
+git add src/components/sections/SolutionStudent.tsx
+git commit -m "feat: integrate StudentDemoWindow into SolutionStudent section"
+```
+
+---
+
+## Task 8: Add translation keys for new content
+
+**Files:**
+- Modify: `messages/en.json`
+- Modify: `messages/kk.json`
+- Modify: `messages/ru.json`
+
+### Step 1: Update English translations
+
+Find the `SolutionStudent` section in `messages/en.json` and ensure it has:
+
+```json
+{
+  "SolutionStudent": {
+    "eyebrow": "How It Works",
+    "headline": {
+      "line1": "See your real",
+      "line2": "pro",
+      "highlight": "gress"
+    },
+    "description": "Track your learning journey with clarity. See how your effort translates into visible improvement over time.",
+    "features": [
+      "Visual progress tracking that makes sense",
+      "Consistency metrics that motivate",
+      "Clear growth journey visualization"
+    ]
+  }
+}
+```
+
+### Step 2: Update Kazakh translations
+
+Update `messages/kk.json`:
+
+```json
+{
+  "SolutionStudent": {
+    "eyebrow": "Қалай жұмыс істейді",
+    "headline": {
+      "line1": "Өзіңіздің нақты",
+      "line2": "білім деңгейіңізді",
+      "highlight": "көріңіз"
+    },
+    "description": "Білім алу жолыңызды анықтықпен бақылаңыз. Қажырлығыңыз қалай көрінетін жетістікке айналатынын көріңіз.",
+    "features": [
+      "Түсінікті білім прогрессінің трекері",
+      "Мотивация беретін тұрақтылық метрикалары",
+      "Анық өсу жолының визуализациясы"
+    ]
+  }
+}
+```
+
+### Step 3: Update Russian translations
+
+Update `messages/ru.json`:
+
+```json
+{
+  "SolutionStudent": {
+    "eyebrow": "Как это работает",
+    "headline": {
+      "line1": "Видите свой",
+      "line2": "реальный про",
+      "highlight": "гресс"
+    },
+    "description": "Отслеживайте свой образовательный путь с ясностью. Видите, как ваши усилия превращаются в видимый прогресс.",
+    "features": [
+      "Понятный визуальный трекинг прогресса",
+      "Метрики постоянства, которые мотивируют",
+      "Четкая визуализация пути роста"
+    ]
+  }
+}
+```
+
+### Step 4: Verify build
+
+```bash
+npm run build 2>&1 | tail -20
+```
+
+Expected: no errors.
+
+### Step 5: Commit
+
+```bash
+git add messages/en.json messages/kk.json messages/ru.json
+git commit -m "feat: update translation keys for student demo section"
+```
+
+---
+
+## Task 9: Final verification and testing
+
+### Step 1: Run development server
+
+```bash
+npm run dev
+```
+
+### Step 2: Manual testing checklist
+
+- [ ] Section renders correctly on desktop
+- [ ] Section renders correctly on mobile (stacked layout)
+- [ ] All three tabs are clickable
+- [ ] Tab transitions are smooth
+- [ ] Progress view shows animated ring and bars
+- [ ] Momentum view shows consistency calendar and streak
+- [ ] Journey view shows growth line and before/after comparison
+- [ ] All counters animate on view
+- [ ] No console errors
+
+### Step 3: Build verification
+
+```bash
+npm run build
+```
+
+Expected: successful build with no errors.
+
+### Step 4: Final commit (if any fixes needed)
+
+```bash
+git add -A
+git commit -m "fix: final adjustments for student interactive demo"
+```
+
+---
+
+## Summary
+
+This implementation plan transforms the static student mockup into an interactive, tabbed demo experience. The key changes:
+
+1. **Three tabbed views** — Progress, Momentum, Journey
+2. **Animated transitions** — Smooth content switching with Framer Motion
+3. **Counter animations** — Numbers count up on view
+4. **Chart animations** — Line charts draw in, bars grow
+5. **Emotional storytelling** — Before/after comparison, milestone journey
+
+The architecture mirrors the institution demo but focuses on personal progress rather than administrative analytics.
+
+---
+
+## END OF IMPLEMENTATION PLAN
