@@ -311,7 +311,9 @@
       "company": {
         "heading": "Company",
         "about": "About",
-        "contact": "Contact"
+        "contact": "Contact",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service"
       }
     },
     "copyright": "© 2026 EduReview. All rights reserved.",
