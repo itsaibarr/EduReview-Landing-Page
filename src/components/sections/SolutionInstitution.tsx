@@ -561,7 +561,7 @@ function DemoWindow() {
       <ContentHeader />
 
       {/* Body: sidebar + content */}
-      <div className="flex">
+      <div className="flex min-h-[540px] relative">
 
         {/* Sidebar */}
         <div className="w-[200px] flex-shrink-0 border-r border-border bg-white flex flex-col">
@@ -620,16 +620,19 @@ function DemoWindow() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, x: 12 }}
+              initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -12 }}
-              transition={{ duration: 0.3, ease: EASE }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.25, ease: EASE }}
               className="p-6"
             >
               {panels[activeTab]}
             </motion.div>
           </AnimatePresence>
         </div>
+
+        {/* Bottom fade */}
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10" />
 
       </div>
     </div>
