@@ -1,10 +1,36 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 
 const EASE = [0.16, 1, 0.3, 1] as const
+
+const OVERVIEW_BARS = [42, 58, 53, 67, 71, 74, 78]
+const OVERVIEW_BAR_MAX = 80
+const OVERVIEW_LABELS = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+
+function useCounter(target: number, duration = 900) {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    let raf: number
+    const start = performance.now()
+
+    const step = (now: number) => {
+      const elapsed = now - start
+      const progress = Math.min(elapsed / duration, 1)
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress)
+      setCount(Math.round(target * ease))
+      if (progress < 1) raf = requestAnimationFrame(step)
+    }
+
+    raf = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(raf)
+  }, [target, duration])
+
+  return count
+}
 
 function FadeUp({ children, delay = 0, className }: {
   children: React.ReactNode
@@ -26,9 +52,65 @@ function FadeUp({ children, delay = 0, className }: {
 
 type Tab = 'overview' | 'engagement' | 'growth'
 
-// Stub — replaced in Task 4
 function OverviewPanel() {
-  return <div className="h-48 flex items-center justify-center text-text-muted text-caption">Overview</div>
+  const classAvg = useCounter(78)
+  const activeStudents = useCounter(24)
+
+  return (
+    <div className="flex flex-col gap-4">
+
+      {/* Panel header */}
+      <div className="flex items-baseline justify-between">
+        <p className="text-h3 font-bold text-text-primary">Overview</p>
+        <p className="text-caption text-text-muted">Week 7 of 12</p>
+      </div>
+
+      {/* Metric cards */}
+      <div className="grid grid-cols-2 gap-3">
+
+        <div className="flex flex-col gap-1.5 p-4 rounded-lg bg-surface border border-border">
+          <p className="text-caption text-text-muted font-medium">Class Avg.</p>
+          <p className="text-[2rem] font-bold text-text-primary leading-none tracking-tight">
+            {classAvg}
+          </p>
+          <p className="text-caption text-success font-medium">↑ +4 pts this week</p>
+        </div>
+
+        <div className="flex flex-col gap-1.5 p-4 rounded-lg bg-surface border border-border">
+          <p className="text-caption text-text-muted font-medium">Active Students</p>
+          <p className="text-[2rem] font-bold text-text-primary leading-none tracking-tight">
+            {activeStudents} <span className="text-h3 text-text-muted font-medium">/ 30</span>
+          </p>
+          <p className="text-caption text-text-muted font-medium">80% participation</p>
+        </div>
+
+      </div>
+
+      {/* 7-day bar chart */}
+      <div className="flex flex-col gap-2">
+        <p className="text-caption text-text-muted font-medium">7-Day Engagement Trend</p>
+        <div className="flex items-end gap-1.5 h-14">
+          {OVERVIEW_BARS.map((v, i) => (
+            <div key={i} className="flex-1 flex flex-col items-center gap-1">
+              <motion.div
+                className="w-full rounded-sm"
+                style={{
+                  background: i === OVERVIEW_BARS.length - 1
+                    ? '#2563EB'
+                    : `rgba(37,99,235,${0.15 + (i / OVERVIEW_BARS.length) * 0.4})`,
+                }}
+                initial={{ height: 0 }}
+                animate={{ height: `${(v / OVERVIEW_BAR_MAX) * 100}%` }}
+                transition={{ duration: 0.6, delay: 0.05 + i * 0.07, ease: EASE }}
+              />
+              <span className="text-[10px] text-text-muted">{OVERVIEW_LABELS[i]}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  )
 }
 
 // Stub — replaced in Task 5
