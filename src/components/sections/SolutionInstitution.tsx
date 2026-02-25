@@ -41,14 +41,77 @@ function GrowthPanel() {
   return <div className="h-48 flex items-center justify-center text-text-muted text-caption">Growth</div>
 }
 
-// Stub — replaced in Task 2+3
+const NAV_ITEMS: { id: Tab; label: string }[] = [
+  { id: 'overview',   label: 'Overview'   },
+  { id: 'engagement', label: 'Engagement' },
+  { id: 'growth',     label: 'Growth'     },
+]
+
 function DemoWindow() {
+  const [activeTab, setActiveTab] = useState<Tab>('overview')
+
+  const panels: Record<Tab, React.ReactNode> = {
+    overview:   <OverviewPanel />,
+    engagement: <EngagementPanel />,
+    growth:     <GrowthPanel />,
+  }
+
   return (
     <div className="w-full rounded-xl border border-border shadow-lg bg-white overflow-hidden">
-      <div className="px-4 py-3 bg-surface border-b border-border">
-        <span className="text-caption text-text-muted">Demo placeholder</span>
+
+      {/* Chrome bar */}
+      <div className="relative flex items-center px-4 py-3 bg-surface border-b border-border">
+        <div className="flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded-full bg-black/10" />
+          <span className="w-3 h-3 rounded-full bg-black/10" />
+          <span className="w-3 h-3 rounded-full bg-black/10" />
+        </div>
+        <span className="absolute left-1/2 -translate-x-1/2 text-caption text-text-muted font-medium">
+          edureview.app/dashboard
+        </span>
       </div>
-      <div className="p-6 h-48" />
+
+      {/* Body: sidebar + content */}
+      <div className="flex min-h-[360px]">
+
+        {/* Sidebar */}
+        <div className="w-[176px] flex-shrink-0 border-r border-border bg-white p-3 flex flex-col gap-1">
+          <p className="px-3 py-2 text-caption font-bold text-text-primary tracking-tight mb-1">
+            EduReview
+          </p>
+          {NAV_ITEMS.map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => setActiveTab(id)}
+              className={[
+                'w-full text-left px-3 py-2 rounded-lg text-label transition-colors duration-150',
+                activeTab === id
+                  ? 'bg-brand-50 text-brand font-semibold'
+                  : 'text-text-secondary hover:bg-surface',
+              ].join(' ')}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        {/* Content area */}
+        <div className="flex-1 overflow-hidden relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, x: 12 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -12 }}
+              transition={{ duration: 0.3, ease: EASE }}
+              className="p-6"
+            >
+              {panels[activeTab]}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+      </div>
     </div>
   )
 }
