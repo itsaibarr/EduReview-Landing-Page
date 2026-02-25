@@ -1,13 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { CheckCircle2, AlertTriangle, TrendingUp, Users } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 
 const EASE = [0.16, 1, 0.3, 1] as const
-
-const BAR_VALUES = [42, 58, 53, 67, 71, 74, 78]
-const BAR_MAX = 80
 
 function FadeUp({ children, delay = 0, className }: {
   children: React.ReactNode
@@ -27,105 +24,44 @@ function FadeUp({ children, delay = 0, className }: {
   )
 }
 
-function DashboardMockup() {
+type Tab = 'overview' | 'engagement' | 'growth'
+
+// Stub — replaced in Task 4
+function OverviewPanel() {
+  return <div className="h-48 flex items-center justify-center text-text-muted text-caption">Overview</div>
+}
+
+// Stub — replaced in Task 5
+function EngagementPanel() {
+  return <div className="h-48 flex items-center justify-center text-text-muted text-caption">Engagement</div>
+}
+
+// Stub — replaced in Task 6
+function GrowthPanel() {
+  return <div className="h-48 flex items-center justify-center text-text-muted text-caption">Growth</div>
+}
+
+// Stub — replaced in Task 2+3
+function DemoWindow() {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 32 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.75, delay: 0.2, ease: EASE }}
-      className="w-full max-w-[460px] rounded-2xl border border-border bg-white shadow-lg overflow-hidden"
-    >
-      {/* Window chrome */}
-      <div className="flex items-center gap-1.5 px-4 py-3 border-b border-border bg-surface">
-        <span className="w-2.5 h-2.5 rounded-full bg-black/10" />
-        <span className="w-2.5 h-2.5 rounded-full bg-black/10" />
-        <span className="w-2.5 h-2.5 rounded-full bg-black/10" />
-        <span className="ml-3 text-caption text-text-muted font-medium">Engagement Overview</span>
-        <span className="ml-auto text-caption text-text-muted">Week 7 of 12</span>
+    <div className="w-full rounded-xl border border-border shadow-lg bg-white overflow-hidden">
+      <div className="px-4 py-3 bg-surface border-b border-border">
+        <span className="text-caption text-text-muted">Demo placeholder</span>
       </div>
-
-      <div className="p-6 flex flex-col gap-4">
-
-        {/* Top stat row */}
-        <div className="grid grid-cols-2 gap-3">
-          {/* Class average */}
-          <div className="flex flex-col gap-1.5 p-4 rounded-xl bg-surface border border-border">
-            <div className="flex items-center gap-1.5 text-caption text-text-muted">
-              <Users size={12} strokeWidth={1.5} />
-              Class Avg.
-            </div>
-            <p className="text-[2rem] font-bold text-text-primary leading-none tracking-tight">78</p>
-            <div className="flex items-center gap-1 text-caption text-success font-medium">
-              <TrendingUp size={11} strokeWidth={2} />
-              +4 pts this week
-            </div>
-          </div>
-
-          {/* Bar chart */}
-          <div className="flex flex-col gap-1.5 p-4 rounded-xl bg-surface border border-border">
-            <p className="text-caption text-text-muted">7-Day Trend</p>
-            <div className="flex items-end gap-1 h-10 mt-auto">
-              {BAR_VALUES.map((v, i) => (
-                <div
-                  key={i}
-                  className="flex-1 rounded-sm"
-                  style={{
-                    height: `${(v / BAR_MAX) * 100}%`,
-                    background: i === BAR_VALUES.length - 1
-                      ? '#2563EB'
-                      : `rgba(37,99,235,${0.15 + (i / BAR_VALUES.length) * 0.35})`,
-                  }}
-                />
-              ))}
-            </div>
-            <p className="text-caption text-success font-medium">↑ 12% growth</p>
-          </div>
-        </div>
-
-        {/* Active students bar */}
-        <div className="flex flex-col gap-2 p-4 rounded-xl bg-surface border border-border">
-          <div className="flex items-center justify-between">
-            <p className="text-caption text-text-muted font-medium">Engagement Spread</p>
-            <p className="text-caption text-text-secondary font-semibold">24 / 30 active</p>
-          </div>
-          <div className="h-2 w-full rounded-full bg-brand-100 overflow-hidden">
-            <motion.div
-              className="h-full rounded-full bg-brand"
-              initial={{ width: 0 }}
-              whileInView={{ width: '80%' }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
-            />
-          </div>
-        </div>
-
-        {/* Early warning */}
-        <div className="flex items-start gap-3 p-4 rounded-xl border border-warning/30 bg-warning-tint">
-          <AlertTriangle size={16} className="text-warning flex-shrink-0 mt-0.5" strokeWidth={1.75} />
-          <div>
-            <p className="text-label font-semibold text-text-primary">Early Warning</p>
-            <p className="mt-0.5 text-caption text-text-secondary leading-relaxed">
-              3 students showing disengagement signals — review recommended before next assessment.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </motion.div>
+      <div className="p-6 h-48" />
+    </div>
   )
 }
 
 export function SolutionInstitution() {
   const t = useTranslations('SolutionInstitution')
-  const features = t.raw('features') as string[]
 
   return (
-    <section id="how-it-works" className="py-28 px-6 bg-surface border-t border-border-subtle">
-      <div className="max-w-[1100px] mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
+    <section id="how-it-works" className="py-28 px-6 bg-white border-t border-border-subtle">
+      <div className="max-w-[1100px] mx-auto">
 
-        {/* Left — text */}
-        <div className="flex-1 max-w-[480px]">
+        {/* Centered header */}
+        <div className="text-center max-w-[600px] mx-auto">
           <FadeUp>
             <p className="text-caption text-brand font-semibold tracking-[0.12em] uppercase">
               {t('eyebrow')}
@@ -141,25 +77,16 @@ export function SolutionInstitution() {
           </FadeUp>
 
           <FadeUp delay={0.2} className="mt-5">
-            <p className="text-body-lg text-text-secondary leading-relaxed">
+            <p className="text-body-lg text-text-secondary leading-relaxed max-w-[480px] mx-auto">
               {t('description')}
             </p>
           </FadeUp>
-
-          <FadeUp delay={0.3} className="mt-8 flex flex-col gap-3">
-            {features.map((f) => (
-              <div key={f} className="flex items-start gap-3">
-                <CheckCircle2 size={17} className="text-brand flex-shrink-0 mt-0.5" strokeWidth={1.75} />
-                <p className="text-body text-text-secondary leading-snug">{f}</p>
-              </div>
-            ))}
-          </FadeUp>
         </div>
 
-        {/* Right — dashboard mockup */}
-        <div className="flex-1 flex justify-center lg:justify-end w-full">
-          <DashboardMockup />
-        </div>
+        {/* Demo window */}
+        <FadeUp delay={0.3} className="mt-16">
+          <DemoWindow />
+        </FadeUp>
 
       </div>
     </section>
