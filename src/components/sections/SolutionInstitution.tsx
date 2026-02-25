@@ -129,7 +129,7 @@ function OverviewPanel() {
   const completionRate = useCounter(88)
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-4 md:gap-5">
 
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -140,48 +140,48 @@ function OverviewPanel() {
       </div>
 
       {/* 6-stat grid */}
-      <div className="grid grid-cols-3 gap-2">
-        <div className="flex flex-col gap-1 p-3 rounded-lg bg-surface border border-border">
-          <p className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Class Avg.</p>
-          <p className="text-[1.25rem] font-bold text-text-primary leading-none">{classAvg}</p>
-          <p className="text-[10px] text-success font-semibold">↑ +4 pts</p>
+      <div className="grid grid-cols-3 gap-1.5 md:gap-2">
+        <div className="flex flex-col gap-0.5 md:gap-1 p-2 md:p-3 rounded-lg bg-surface border border-border">
+          <p className="text-[9px] md:text-[10px] text-text-muted font-medium uppercase tracking-wide">Class Avg.</p>
+          <p className="text-[1rem] md:text-[1.25rem] font-bold text-text-primary leading-none">{classAvg}</p>
+          <p className="text-[9px] md:text-[10px] text-success font-semibold">↑ +4 pts</p>
         </div>
-        <div className="flex flex-col gap-1 p-3 rounded-lg bg-surface border border-border">
-          <p className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Submitted</p>
-          <p className="text-[1.25rem] font-bold text-text-primary leading-none">{submitted}%</p>
-          <p className="text-[10px] text-success font-semibold">↑ +2%</p>
+        <div className="flex flex-col gap-0.5 md:gap-1 p-2 md:p-3 rounded-lg bg-surface border border-border">
+          <p className="text-[9px] md:text-[10px] text-text-muted font-medium uppercase tracking-wide">Submitted</p>
+          <p className="text-[1rem] md:text-[1.25rem] font-bold text-text-primary leading-none">{submitted}%</p>
+          <p className="text-[9px] md:text-[10px] text-success font-semibold">↑ +2%</p>
         </div>
-        <div className="flex flex-col gap-1 p-3 rounded-lg bg-surface border border-border">
-          <p className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Active</p>
-          <p className="text-[1.25rem] font-bold text-text-primary leading-none">
-            {activeCount}<span className="text-xs text-text-muted font-normal"> /30</span>
+        <div className="flex flex-col gap-0.5 md:gap-1 p-2 md:p-3 rounded-lg bg-surface border border-border">
+          <p className="text-[9px] md:text-[10px] text-text-muted font-medium uppercase tracking-wide">Active</p>
+          <p className="text-[1rem] md:text-[1.25rem] font-bold text-text-primary leading-none">
+            {activeCount}<span className="text-[10px] md:text-xs text-text-muted font-normal"> /30</span>
           </p>
-          <p className="text-[10px] text-text-muted font-medium">80% rate</p>
+          <p className="text-[9px] md:text-[10px] text-text-muted font-medium">80% rate</p>
         </div>
-        <div className="flex flex-col gap-1 p-3 rounded-lg bg-warning-tint border border-warning/20">
-          <p className="text-[10px] text-warning font-medium uppercase tracking-wide">At Risk</p>
-          <p className="text-[1.25rem] font-bold text-text-primary leading-none">3</p>
-          <p className="text-[10px] text-warning font-semibold">↑ 1 new</p>
+        <div className="flex flex-col gap-0.5 md:gap-1 p-2 md:p-3 rounded-lg bg-warning-tint border border-warning/20">
+          <p className="text-[9px] md:text-[10px] text-warning font-medium uppercase tracking-wide">At Risk</p>
+          <p className="text-[1rem] md:text-[1.25rem] font-bold text-text-primary leading-none">3</p>
+          <p className="text-[9px] md:text-[10px] text-warning font-semibold">↑ 1 new</p>
         </div>
-        <div className="flex flex-col gap-1 p-3 rounded-lg bg-surface border border-border">
-          <p className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Avg. Assignment</p>
-          <p className="text-[1.25rem] font-bold text-text-primary leading-none">{avgAssignment}</p>
-          <p className="text-[10px] text-success font-semibold">↑ +2 pts</p>
+        <div className="flex flex-col gap-0.5 md:gap-1 p-2 md:p-3 rounded-lg bg-surface border border-border">
+          <p className="text-[9px] md:text-[10px] text-text-muted font-medium uppercase tracking-wide">Avg. Assignment</p>
+          <p className="text-[1rem] md:text-[1.25rem] font-bold text-text-primary leading-none">{avgAssignment}</p>
+          <p className="text-[9px] md:text-[10px] text-success font-semibold">↑ +2 pts</p>
         </div>
-        <div className="flex flex-col gap-1 p-3 rounded-lg bg-surface border border-border">
-          <p className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Completion</p>
-          <p className="text-[1.25rem] font-bold text-text-primary leading-none">{completionRate}%</p>
-          <p className="text-[10px] text-success font-semibold">↑ +3%</p>
+        <div className="flex flex-col gap-0.5 md:gap-1 p-2 md:p-3 rounded-lg bg-surface border border-border">
+          <p className="text-[9px] md:text-[10px] text-text-muted font-medium uppercase tracking-wide">Completion</p>
+          <p className="text-[1rem] md:text-[1.25rem] font-bold text-text-primary leading-none">{completionRate}%</p>
+          <p className="text-[9px] md:text-[10px] text-success font-semibold">↑ +3%</p>
         </div>
       </div>
 
       {/* 7-day bar chart */}
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
-          <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide">7-Day Engagement Trend</p>
-          <p className="text-[10px] text-text-muted">avg. 63.3</p>
+          <p className="text-[9px] md:text-[10px] font-semibold text-text-muted uppercase tracking-wide">7-Day Engagement Trend</p>
+          <p className="text-[9px] md:text-[10px] text-text-muted">avg. 63.3</p>
         </div>
-        <div className="flex items-end gap-1.5 h-16">
+        <div className="flex items-end gap-1 md:gap-1.5 h-12 md:h-16">
           {OVERVIEW_BARS.map((v, i) => (
             <div key={i} className="flex-1 flex flex-col items-center gap-1">
               <motion.div
@@ -195,14 +195,14 @@ function OverviewPanel() {
                 animate={{ height: `${(v / OVERVIEW_BAR_MAX) * 100}%` }}
                 transition={{ duration: 0.6, delay: 0.05 + i * 0.07, ease: EASE }}
               />
-              <span className="text-[10px] text-text-muted">{OVERVIEW_LABELS[i]}</span>
+              <span className="text-[9px] md:text-[10px] text-text-muted">{OVERVIEW_LABELS[i]}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Student table */}
-      <div className="flex flex-col">
+      {/* Student table - hidden on mobile */}
+      <div className="hidden md:flex flex-col">
         <div className="grid grid-cols-[1fr_2.5rem_3rem_5.5rem_4rem] items-center py-1.5 border-b border-border gap-x-3">
           <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide">Student</p>
           <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide text-right">Avg</p>
@@ -234,8 +234,8 @@ function OverviewPanel() {
         ))}
       </div>
 
-      {/* Recent Activity */}
-      <div className="flex flex-col gap-1.5">
+      {/* Recent Activity - hidden on mobile */}
+      <div className="hidden md:flex flex-col gap-1.5">
         <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide mb-0.5">Recent Activity</p>
         {[
           { text: 'Fatima N. submitted Assignment 7', time: '2m ago',  dot: 'bg-brand'   },
@@ -256,7 +256,7 @@ function OverviewPanel() {
 
 function EngagementPanel() {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-4 md:gap-5">
 
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -270,13 +270,13 @@ function EngagementPanel() {
       {/* Attendance bar chart */}
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
-          <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide">Daily Attendance</p>
-          <p className="text-[10px] text-text-muted">This week</p>
+          <p className="text-[9px] md:text-[10px] font-semibold text-text-muted uppercase tracking-wide">Daily Attendance</p>
+          <p className="text-[9px] md:text-[10px] text-text-muted">This week</p>
         </div>
-        <div className="flex items-end gap-3 h-28">
+        <div className="flex items-end gap-2 md:gap-3 h-20 md:h-28">
           {ENGAGEMENT_BARS.map((v, i) => (
-            <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
-              <span className="text-[9px] font-semibold text-text-muted">{v}%</span>
+            <div key={i} className="flex-1 flex flex-col items-center gap-1 md:gap-1.5">
+              <span className="text-[8px] md:text-[9px] font-semibold text-text-muted">{v}%</span>
               <motion.div
                 className="w-full rounded-sm"
                 style={{
@@ -288,34 +288,34 @@ function EngagementPanel() {
                 animate={{ height: `${(v / ENGAGEMENT_BAR_MAX) * 100}%` }}
                 transition={{ duration: 0.6, delay: 0.05 + i * 0.08, ease: EASE }}
               />
-              <span className="text-[10px] text-text-muted">{ENGAGEMENT_LABELS[i]}</span>
+              <span className="text-[9px] md:text-[10px] text-text-muted">{ENGAGEMENT_LABELS[i]}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* 4 stat chips */}
-      <div className="grid grid-cols-2 gap-2">
-        <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
-          <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Avg. Attendance</span>
-          <span className="text-label font-bold text-text-primary">86%</span>
+      <div className="grid grid-cols-2 gap-1.5 md:gap-2">
+        <div className="flex items-center justify-between px-2.5 py-2 md:px-3 md:py-2.5 rounded-lg bg-surface border border-border">
+          <span className="text-[9px] md:text-[10px] text-text-muted font-medium uppercase tracking-wide">Avg. Attendance</span>
+          <span className="text-[11px] md:text-label font-bold text-text-primary">86%</span>
         </div>
-        <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
-          <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">On-time Submit</span>
-          <span className="text-label font-bold text-text-primary">91%</span>
+        <div className="flex items-center justify-between px-2.5 py-2 md:px-3 md:py-2.5 rounded-lg bg-surface border border-border">
+          <span className="text-[9px] md:text-[10px] text-text-muted font-medium uppercase tracking-wide">On-time Submit</span>
+          <span className="text-[11px] md:text-label font-bold text-text-primary">91%</span>
         </div>
-        <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
-          <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Avg. Session</span>
-          <span className="text-label font-bold text-text-primary">34 min</span>
+        <div className="flex items-center justify-between px-2.5 py-2 md:px-3 md:py-2.5 rounded-lg bg-surface border border-border">
+          <span className="text-[9px] md:text-[10px] text-text-muted font-medium uppercase tracking-wide">Avg. Session</span>
+          <span className="text-[11px] md:text-label font-bold text-text-primary">34 min</span>
         </div>
-        <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
-          <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Repeat Visits</span>
-          <span className="text-label font-bold text-text-primary">78%</span>
+        <div className="flex items-center justify-between px-2.5 py-2 md:px-3 md:py-2.5 rounded-lg bg-surface border border-border">
+          <span className="text-[9px] md:text-[10px] text-text-muted font-medium uppercase tracking-wide">Repeat Visits</span>
+          <span className="text-[11px] md:text-label font-bold text-text-primary">78%</span>
         </div>
       </div>
 
-      {/* Flagged student rows */}
-      <div className="flex flex-col">
+      {/* Flagged student rows - hidden on mobile */}
+      <div className="hidden md:flex flex-col">
         <div className="flex items-center justify-between py-1.5 border-b border-border">
           <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide">Flagged Students</p>
           <p className="text-[10px] text-text-muted">Last active · Attendance</p>
@@ -343,8 +343,8 @@ function EngagementPanel() {
         ))}
       </div>
 
-      {/* Warning banner */}
-      <div className="flex items-start gap-3 p-3 rounded-lg border border-warning/30 bg-warning-tint">
+      {/* Warning banner - hidden on mobile */}
+      <div className="hidden md:flex items-start gap-3 p-3 rounded-lg border border-warning/30 bg-warning-tint">
         <AlertTriangle size={14} className="text-warning flex-shrink-0 mt-0.5" strokeWidth={2} />
         <div>
           <p className="text-label font-semibold text-text-primary">5 students flagged for disengagement</p>
@@ -365,7 +365,7 @@ function GrowthPanel() {
   const pathLen = W * 1.4
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-4 md:gap-5">
 
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -376,8 +376,8 @@ function GrowthPanel() {
       </div>
 
       {/* SVG line chart */}
-      <div className="flex flex-col gap-1 rounded-lg bg-surface border border-border p-3">
-        <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 110 }} preserveAspectRatio="none">
+      <div className="flex flex-col gap-1 rounded-lg bg-surface border border-border p-2.5 md:p-3">
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 80 }} preserveAspectRatio="none">
           {[0.25, 0.5, 0.75].map((t) => (
             <line
               key={t}
@@ -411,29 +411,29 @@ function GrowthPanel() {
         </svg>
         <div className="flex justify-between mt-1">
           {GROWTH_POINTS.map((_, i) => (
-            <span key={i} className="text-[10px] text-text-muted">W{i + 1}</span>
+            <span key={i} className="text-[9px] md:text-[10px] text-text-muted">W{i + 1}</span>
           ))}
         </div>
       </div>
 
       {/* 3 stat chips */}
-      <div className="grid grid-cols-3 gap-2">
-        <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
-          <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Cohort Growth</span>
-          <span className="text-label font-bold text-brand">+14%</span>
+      <div className="grid grid-cols-3 gap-1.5 md:gap-2">
+        <div className="flex flex-col md:flex-row items-center justify-between px-2.5 py-2 md:px-3 md:py-2.5 rounded-lg bg-surface border border-border gap-0.5 md:gap-0">
+          <span className="text-[9px] md:text-[10px] text-text-muted font-medium uppercase tracking-wide">Cohort Growth</span>
+          <span className="text-[11px] md:text-label font-bold text-brand">+14%</span>
         </div>
-        <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
-          <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Consistency</span>
-          <span className="text-label font-bold text-text-primary">88</span>
+        <div className="flex flex-col md:flex-row items-center justify-between px-2.5 py-2 md:px-3 md:py-2.5 rounded-lg bg-surface border border-border gap-0.5 md:gap-0">
+          <span className="text-[9px] md:text-[10px] text-text-muted font-medium uppercase tracking-wide">Consistency</span>
+          <span className="text-[11px] md:text-label font-bold text-text-primary">88</span>
         </div>
-        <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
-          <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Top Performer</span>
-          <span className="text-label font-bold text-brand">Fatima N.</span>
+        <div className="flex flex-col md:flex-row items-center justify-between px-2.5 py-2 md:px-3 md:py-2.5 rounded-lg bg-surface border border-border gap-0.5 md:gap-0">
+          <span className="text-[9px] md:text-[10px] text-text-muted font-medium uppercase tracking-wide">Top Performer</span>
+          <span className="text-[11px] md:text-label font-bold text-brand">Fatima N.</span>
         </div>
       </div>
 
-      {/* Weekly breakdown */}
-      <div className="flex flex-col">
+      {/* Weekly breakdown - hidden on mobile */}
+      <div className="hidden md:flex flex-col">
         <div className="grid grid-cols-[2rem_2.5rem_1fr_4.5rem] items-center py-1.5 border-b border-border gap-x-3">
           <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide">Wk</p>
           <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide">Avg</p>
@@ -465,8 +465,8 @@ function GrowthPanel() {
         ))}
       </div>
 
-      {/* Top Performers */}
-      <div className="flex flex-col gap-1.5">
+      {/* Top Performers - hidden on mobile */}
+      <div className="hidden md:flex flex-col gap-1.5">
         <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide mb-0.5">Top Performers</p>
         {[
           { rank: 1, initials: 'FN', name: 'Fatima N.', score: 91 },
@@ -493,8 +493,8 @@ function ContentHeader() {
     <div className="flex items-center justify-between px-4 h-11 border-b border-border bg-white">
       <div className="flex items-center text-label">
         <span className="font-semibold text-text-primary">CS-401 · Algorithms</span>
-        <span className="text-text-muted mx-2">/</span>
-        <span className="text-text-muted">Week 7 Dashboard</span>
+        <span className="text-text-muted mx-2 hidden sm:inline">/</span>
+        <span className="text-text-muted hidden sm:inline">Week 7 Dashboard</span>
       </div>
       <div className="flex items-center gap-3">
         <span className="text-[10px] font-semibold bg-surface border border-border rounded-full px-2.5 py-0.5 text-text-muted">
@@ -552,7 +552,7 @@ function DemoWindow() {
           <span className="w-3 h-3 rounded-full bg-black/10" />
           <span className="w-3 h-3 rounded-full bg-black/10" />
         </div>
-        <span className="absolute left-1/2 -translate-x-1/2 text-caption text-text-muted font-medium">
+        <span className="absolute left-1/2 -translate-x-1/2 text-caption text-text-muted font-medium hidden sm:block">
           edureview.app/dashboard
         </span>
       </div>
@@ -560,11 +560,30 @@ function DemoWindow() {
       {/* Interior header */}
       <ContentHeader />
 
-      {/* Body: sidebar + content */}
-      <div className="flex min-h-[540px] relative">
+      {/* Mobile tab bar - visible only on mobile */}
+      <div className="flex border-b border-border bg-white md:hidden">
+        {NAV_ITEMS.map(({ id, label }) => (
+          <button
+            key={id}
+            onClick={() => setActiveTab(id)}
+            className={[
+              'flex-1 flex items-center justify-center gap-1.5 py-3 text-label transition-colors duration-150',
+              activeTab === id
+                ? 'text-brand font-semibold border-b-2 border-brand'
+                : 'text-text-muted',
+            ].join(' ')}
+          >
+            {getNavIcon(id)}
+            <span className="text-[11px]">{label}</span>
+          </button>
+        ))}
+      </div>
 
-        {/* Sidebar */}
-        <div className="w-[200px] flex-shrink-0 border-r border-border bg-white flex flex-col">
+      {/* Body: sidebar + content */}
+      <div className="flex min-h-[320px] md:min-h-[540px] relative">
+
+        {/* Sidebar - hidden on mobile */}
+        <div className="hidden md:flex w-[200px] flex-shrink-0 border-r border-border bg-white flex-col">
 
           {/* Workspace header */}
           <div className="flex items-center gap-2 px-3 py-2.5 border-b border-border">
@@ -624,7 +643,7 @@ function DemoWindow() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.25, ease: EASE }}
-              className="p-6"
+              className="p-4 md:p-6"
             >
               {panels[activeTab]}
             </motion.div>
@@ -645,7 +664,7 @@ export function SolutionInstitution() {
   const t = useTranslations('SolutionInstitution')
 
   return (
-    <section id="how-it-works" className="py-28 px-6 bg-white border-t border-border-subtle">
+    <section id="how-it-works" className="py-16 md:py-28 px-4 md:px-6 bg-white border-t border-border-subtle">
       <div className="max-w-[1100px] mx-auto">
 
         {/* Centered header */}
@@ -657,7 +676,7 @@ export function SolutionInstitution() {
           </FadeUp>
 
           <FadeUp delay={0.1} className="mt-4">
-            <h2 className="text-h1 font-bold text-text-primary leading-[1.1] tracking-[-0.03em]">
+            <h2 className="text-h2 md:text-h1 font-bold text-text-primary leading-[1.1] tracking-[-0.03em]">
               {t('headline.line1')}
               <br />
               {t('headline.line2')}<span className="text-brand">{t('headline.highlight')}</span>
@@ -665,15 +684,15 @@ export function SolutionInstitution() {
           </FadeUp>
 
           <FadeUp delay={0.2} className="mt-5">
-            <p className="text-body-lg text-text-secondary leading-relaxed max-w-[480px] mx-auto">
+            <p className="text-body md:text-body-lg text-text-secondary leading-relaxed max-w-[480px] mx-auto">
               {t('description')}
             </p>
           </FadeUp>
         </div>
 
         {/* Demo window */}
-        <FadeUp delay={0.3} className="mt-16">
-          <div className="scale-[0.85] origin-top">
+        <FadeUp delay={0.3} className="mt-10 md:mt-16">
+          <div className="md:scale-[0.85] md:origin-top md:flex md:justify-center">
             <DemoWindow />
           </div>
         </FadeUp>
