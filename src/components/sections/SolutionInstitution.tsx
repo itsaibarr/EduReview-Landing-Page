@@ -673,7 +673,9 @@ export function SolutionInstitution() {
 
         {/* Demo window */}
         <FadeUp delay={0.3} className="mt-16">
-          <DemoWindow />
+          <div className="scale-[0.85] origin-top">
+            <DemoWindow />
+          </div>
         </FadeUp>
 
       </div>
