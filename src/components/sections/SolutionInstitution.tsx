@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { BarChart2, Activity, TrendingUp, AlertTriangle } from 'lucide-react'
+import { BarChart2, Activity, TrendingUp, AlertTriangle, BookOpen, Users, ClipboardList, FileText, PieChart, Settings, ChevronDown } from 'lucide-react'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -425,6 +425,26 @@ function GrowthPanel() {
   )
 }
 
+function ContentHeader() {
+  return (
+    <div className="flex items-center justify-between px-4 h-11 border-b border-border bg-white">
+      <div className="flex items-center text-label">
+        <span className="font-semibold text-text-primary">CS-401 · Algorithms</span>
+        <span className="text-text-muted mx-2">/</span>
+        <span className="text-text-muted">Week 7 Dashboard</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <span className="text-[10px] font-semibold bg-surface border border-border rounded-full px-2.5 py-0.5 text-text-muted">
+          Spring 2026
+        </span>
+        <div className="w-[26px] h-[26px] rounded-full bg-brand-50 flex items-center justify-center">
+          <span className="text-[9px] font-bold text-brand">AD</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ─── DemoWindow ───────────────────────────────────────────────────────────────
 
 const NAV_ITEMS: { id: Tab; label: string }[] = [
@@ -464,6 +484,9 @@ function DemoWindow() {
           edureview.app/dashboard
         </span>
       </div>
+
+      {/* Interior header */}
+      <ContentHeader />
 
       {/* Body: sidebar + content */}
       <div className="flex">
