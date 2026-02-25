@@ -15,12 +15,12 @@ const OVERVIEW_LABELS = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
 
 type StudentStatus = 'top' | 'on-track' | 'risk'
 
-const STUDENTS: { initials: string; name: string; score: number; trend: number[]; status: StudentStatus }[] = [
-  { initials: 'AJ', name: 'Asel J.',   score: 84, trend: [70, 75, 76, 82, 80, 84], status: 'on-track' },
-  { initials: 'DK', name: 'Dmitry K.', score: 79, trend: [68, 70, 74, 77, 75, 79], status: 'on-track' },
-  { initials: 'FN', name: 'Fatima N.', score: 91, trend: [83, 85, 87, 90, 89, 91], status: 'top'      },
-  { initials: 'BP', name: 'Bogdan P.', score: 61, trend: [65, 60, 58, 62, 59, 61], status: 'risk'     },
-  { initials: 'ZS', name: 'Zara S.',   score: 74, trend: [69, 72, 70, 73, 71, 74], status: 'on-track' },
+const STUDENTS: { initials: string; name: string; score: number; trend: number[]; status: StudentStatus; lastActive: string }[] = [
+  { initials: 'AJ', name: 'Asel J.',   score: 84, trend: [70, 75, 76, 82, 80, 84], status: 'on-track', lastActive: '2m ago'  },
+  { initials: 'DK', name: 'Dmitry K.', score: 79, trend: [68, 70, 74, 77, 75, 79], status: 'on-track', lastActive: '1h ago'  },
+  { initials: 'FN', name: 'Fatima N.', score: 91, trend: [83, 85, 87, 90, 89, 91], status: 'top',      lastActive: 'Just now' },
+  { initials: 'BP', name: 'Bogdan P.', score: 61, trend: [65, 60, 58, 62, 59, 61], status: 'risk',     lastActive: '3d ago'  },
+  { initials: 'ZS', name: 'Zara S.',   score: 74, trend: [69, 72, 70, 73, 71, 74], status: 'on-track', lastActive: '45m ago' },
 ]
 
 const STATUS_STYLE: Record<StudentStatus, { label: string; cls: string }> = {
@@ -33,6 +33,8 @@ const AT_RISK_ROWS = [
   { initials: 'BP', name: 'Bogdan P.', since: '3d ago', attend: 62 },
   { initials: 'KL', name: 'Kira L.',   since: '2d ago', attend: 68 },
   { initials: 'OS', name: 'Omar S.',   since: '5d ago', attend: 55 },
+  { initials: 'ML', name: 'Mila L.',   since: '1d ago', attend: 71 },
+  { initials: 'TN', name: 'Timur N.', since: '4d ago', attend: 58 },
 ]
 
 const ENGAGEMENT_BARS    = [78, 85, 72, 91, 88]
@@ -120,9 +122,11 @@ function Sparkline({ values }: { values: number[] }) {
 type Tab = 'overview' | 'engagement' | 'growth'
 
 function OverviewPanel() {
-  const classAvg    = useCounter(78)
-  const submitted   = useCounter(93)
-  const activeCount = useCounter(24)
+  const classAvg       = useCounter(78)
+  const submitted      = useCounter(93)
+  const activeCount    = useCounter(24)
+  const avgAssignment  = useCounter(74)
+  const completionRate = useCounter(88)
 
   return (
     <div className="flex flex-col gap-5">
@@ -135,8 +139,8 @@ function OverviewPanel() {
         </span>
       </div>
 
-      {/* 4-stat row */}
-      <div className="grid grid-cols-4 gap-2">
+      {/* 6-stat grid */}
+      <div className="grid grid-cols-3 gap-2">
         <div className="flex flex-col gap-1 p-3 rounded-lg bg-surface border border-border">
           <p className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Class Avg.</p>
           <p className="text-[1.25rem] font-bold text-text-primary leading-none">{classAvg}</p>
@@ -158,6 +162,16 @@ function OverviewPanel() {
           <p className="text-[10px] text-warning font-medium uppercase tracking-wide">At Risk</p>
           <p className="text-[1.25rem] font-bold text-text-primary leading-none">3</p>
           <p className="text-[10px] text-warning font-semibold">↑ 1 new</p>
+        </div>
+        <div className="flex flex-col gap-1 p-3 rounded-lg bg-surface border border-border">
+          <p className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Avg. Assignment</p>
+          <p className="text-[1.25rem] font-bold text-text-primary leading-none">{avgAssignment}</p>
+          <p className="text-[10px] text-success font-semibold">↑ +2 pts</p>
+        </div>
+        <div className="flex flex-col gap-1 p-3 rounded-lg bg-surface border border-border">
+          <p className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Completion</p>
+          <p className="text-[1.25rem] font-bold text-text-primary leading-none">{completionRate}%</p>
+          <p className="text-[10px] text-success font-semibold">↑ +3%</p>
         </div>
       </div>
 
@@ -189,11 +203,12 @@ function OverviewPanel() {
 
       {/* Student table */}
       <div className="flex flex-col">
-        <div className="grid grid-cols-[1fr_2.5rem_3rem_5.5rem] items-center py-1.5 border-b border-border gap-x-3">
+        <div className="grid grid-cols-[1fr_2.5rem_3rem_5.5rem_4rem] items-center py-1.5 border-b border-border gap-x-3">
           <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide">Student</p>
           <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide text-right">Avg</p>
           <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide">Trend</p>
           <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide">Status</p>
+          <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide">Last Active</p>
         </div>
         {STUDENTS.map((s, i) => (
           <motion.div
@@ -201,7 +216,7 @@ function OverviewPanel() {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.4 + i * 0.06, ease: EASE }}
-            className="grid grid-cols-[1fr_2.5rem_3rem_5.5rem] items-center py-2 border-b border-border/60 last:border-0 gap-x-3"
+            className="grid grid-cols-[1fr_2.5rem_3rem_5.5rem_4rem] items-center py-2 border-b border-border/60 last:border-0 gap-x-3"
           >
             <div className="flex items-center gap-2 min-w-0">
               <div className="w-6 h-6 rounded-full bg-brand-100 flex items-center justify-center flex-shrink-0">
@@ -214,7 +229,24 @@ function OverviewPanel() {
             <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full text-center ${STATUS_STYLE[s.status].cls}`}>
               {STATUS_STYLE[s.status].label}
             </span>
+            <span className="text-[10px] text-text-muted">{s.lastActive}</span>
           </motion.div>
+        ))}
+      </div>
+
+      {/* Recent Activity */}
+      <div className="flex flex-col gap-1.5">
+        <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide mb-0.5">Recent Activity</p>
+        {[
+          { text: 'Fatima N. submitted Assignment 7', time: '2m ago',  dot: 'bg-brand'   },
+          { text: 'Asel J. completed Quiz 3',         time: '18m ago', dot: 'bg-brand'   },
+          { text: 'Bogdan P. missed session',         time: '1h ago',  dot: 'bg-warning' },
+        ].map((item, i) => (
+          <div key={i} className="flex items-center gap-2">
+            <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${item.dot}`} />
+            <span className="text-[10px] text-text-secondary flex-1">{item.text}</span>
+            <span className="text-[10px] text-text-muted">{item.time}</span>
+          </div>
         ))}
       </div>
 
@@ -241,7 +273,7 @@ function EngagementPanel() {
           <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide">Daily Attendance</p>
           <p className="text-[10px] text-text-muted">This week</p>
         </div>
-        <div className="flex items-end gap-3 h-20">
+        <div className="flex items-end gap-3 h-28">
           {ENGAGEMENT_BARS.map((v, i) => (
             <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
               <span className="text-[9px] font-semibold text-text-muted">{v}%</span>
@@ -262,7 +294,7 @@ function EngagementPanel() {
         </div>
       </div>
 
-      {/* Stat chips */}
+      {/* 4 stat chips */}
       <div className="grid grid-cols-2 gap-2">
         <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
           <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Avg. Attendance</span>
@@ -272,9 +304,17 @@ function EngagementPanel() {
           <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">On-time Submit</span>
           <span className="text-label font-bold text-text-primary">91%</span>
         </div>
+        <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
+          <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Avg. Session</span>
+          <span className="text-label font-bold text-text-primary">34 min</span>
+        </div>
+        <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
+          <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Repeat Visits</span>
+          <span className="text-label font-bold text-text-primary">78%</span>
+        </div>
       </div>
 
-      {/* At-risk student rows */}
+      {/* Flagged student rows */}
       <div className="flex flex-col">
         <div className="flex items-center justify-between py-1.5 border-b border-border">
           <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide">Flagged Students</p>
@@ -303,11 +343,11 @@ function EngagementPanel() {
         ))}
       </div>
 
-      {/* Warning summary */}
+      {/* Warning banner */}
       <div className="flex items-start gap-3 p-3 rounded-lg border border-warning/30 bg-warning-tint">
         <AlertTriangle size={14} className="text-warning flex-shrink-0 mt-0.5" strokeWidth={2} />
         <div>
-          <p className="text-label font-semibold text-text-primary">3 students flagged for disengagement</p>
+          <p className="text-label font-semibold text-text-primary">5 students flagged for disengagement</p>
           <p className="mt-0.5 text-[10px] text-text-secondary leading-relaxed">
             Review recommended before next assessment on Friday.
           </p>
