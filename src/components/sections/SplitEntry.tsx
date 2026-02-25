@@ -4,6 +4,7 @@ import { useRouter } from '@/i18n/routing'
 import { motion } from 'framer-motion'
 import { Building2, GraduationCap } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { LocaleNameSwitcher } from '@/components/ui/LocaleNameSwitcher'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -89,6 +90,15 @@ export function SplitEntry() {
           </motion.button>
         ))}
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, delay: 0.32, ease: EASE }}
+        className="mt-8"
+      >
+        <LocaleNameSwitcher />
+      </motion.div>
     </div>
   )
 }
