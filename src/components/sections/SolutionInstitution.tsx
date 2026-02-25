@@ -416,8 +416,8 @@ function GrowthPanel() {
         </div>
       </div>
 
-      {/* Stat chips */}
-      <div className="grid grid-cols-2 gap-2">
+      {/* 3 stat chips */}
+      <div className="grid grid-cols-3 gap-2">
         <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
           <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Cohort Growth</span>
           <span className="text-label font-bold text-brand">+14%</span>
@@ -425,6 +425,10 @@ function GrowthPanel() {
         <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
           <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Consistency</span>
           <span className="text-label font-bold text-text-primary">88</span>
+        </div>
+        <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface border border-border">
+          <span className="text-[10px] text-text-muted font-medium uppercase tracking-wide">Top Performer</span>
+          <span className="text-label font-bold text-brand">Fatima N.</span>
         </div>
       </div>
 
@@ -458,6 +462,25 @@ function GrowthPanel() {
               {GROWTH_DELTA[i]}
             </span>
           </motion.div>
+        ))}
+      </div>
+
+      {/* Top Performers */}
+      <div className="flex flex-col gap-1.5">
+        <p className="text-[10px] font-semibold text-text-muted uppercase tracking-wide mb-0.5">Top Performers</p>
+        {[
+          { rank: 1, initials: 'FN', name: 'Fatima N.', score: 91 },
+          { rank: 2, initials: 'AJ', name: 'Asel J.',   score: 84 },
+          { rank: 3, initials: 'ZS', name: 'Zara S.',   score: 74 },
+        ].map((p) => (
+          <div key={p.rank} className="flex items-center gap-2">
+            <span className="text-[10px] font-bold text-text-muted w-4">{p.rank}</span>
+            <div className="w-[22px] h-[22px] rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+              <span className="text-[9px] font-bold text-brand">{p.initials}</span>
+            </div>
+            <span className="text-label text-text-primary flex-1">{p.name}</span>
+            <span className="text-label font-bold text-brand">{p.score}</span>
+          </div>
         ))}
       </div>
 
