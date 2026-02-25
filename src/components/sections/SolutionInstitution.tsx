@@ -453,6 +453,15 @@ const NAV_ITEMS: { id: Tab; label: string }[] = [
   { id: 'growth',     label: 'Growth'     },
 ]
 
+const INACTIVE_NAV_ITEMS = [
+  { id: 'classes',     label: 'Classes',     icon: <BookOpen     size={15} strokeWidth={1.5} /> },
+  { id: 'students',    label: 'Students',    icon: <Users        size={15} strokeWidth={1.5} /> },
+  { id: 'assignments', label: 'Assignments', icon: <ClipboardList size={15} strokeWidth={1.5} /> },
+  { id: 'reports',     label: 'Reports',     icon: <FileText     size={15} strokeWidth={1.5} /> },
+  { id: 'analytics',   label: 'Analytics',   icon: <PieChart     size={15} strokeWidth={1.5} /> },
+  { id: 'settings',    label: 'Settings',    icon: <Settings     size={15} strokeWidth={1.5} /> },
+]
+
 function getNavIcon(id: Tab) {
   switch (id) {
     case 'overview':   return <BarChart2  size={15} strokeWidth={1.5} />
@@ -492,25 +501,55 @@ function DemoWindow() {
       <div className="flex">
 
         {/* Sidebar */}
-        <div className="w-[176px] flex-shrink-0 border-r border-border bg-white p-3 flex flex-col gap-1">
-          <p className="px-3 py-2 text-caption font-bold text-text-primary tracking-tight mb-1">
-            EduReview
-          </p>
-          {NAV_ITEMS.map(({ id, label }) => (
-            <button
-              key={id}
-              onClick={() => setActiveTab(id)}
-              className={[
-                'w-full text-left px-3 py-2 rounded-lg text-label transition-colors duration-150 flex items-center gap-2',
-                activeTab === id
-                  ? 'bg-brand-50 text-brand font-semibold'
-                  : 'text-text-secondary hover:bg-surface',
-              ].join(' ')}
-            >
-              {getNavIcon(id)}
-              {label}
-            </button>
-          ))}
+        <div className="w-[200px] flex-shrink-0 border-r border-border bg-white flex flex-col">
+
+          {/* Workspace header */}
+          <div className="flex items-center gap-2 px-3 py-2.5 border-b border-border">
+            <div className="w-[22px] h-[22px] rounded-md bg-brand flex items-center justify-center flex-shrink-0">
+              <span className="text-[11px] font-bold text-white">E</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-label font-bold text-text-primary leading-none">EduReview</p>
+              <p className="text-[10px] text-text-muted leading-none mt-0.5">Admin</p>
+            </div>
+            <ChevronDown size={14} className="text-text-muted flex-shrink-0" />
+          </div>
+
+          {/* Nav */}
+          <div className="flex flex-col gap-1 p-3 flex-1">
+            <p className="px-3 text-[10px] font-semibold text-text-muted uppercase tracking-wide mb-1">
+              Analytics
+            </p>
+            {NAV_ITEMS.map(({ id, label }) => (
+              <button
+                key={id}
+                onClick={() => setActiveTab(id)}
+                className={[
+                  'w-full text-left px-3 py-2 rounded-lg text-label transition-colors duration-150 flex items-center gap-2',
+                  activeTab === id
+                    ? 'bg-brand-50 text-brand font-semibold'
+                    : 'text-text-secondary hover:bg-surface',
+                ].join(' ')}
+              >
+                {getNavIcon(id)}
+                {label}
+              </button>
+            ))}
+
+            <p className="px-3 text-[10px] font-semibold text-text-muted uppercase tracking-wide mt-3 mb-1">
+              Manage
+            </p>
+            {INACTIVE_NAV_ITEMS.map(({ id, label, icon }) => (
+              <div
+                key={id}
+                className="w-full text-left px-3 py-2 rounded-lg text-label flex items-center gap-2 text-text-secondary opacity-40"
+              >
+                {icon}
+                {label}
+              </div>
+            ))}
+          </div>
+
         </div>
 
         {/* Content area */}
