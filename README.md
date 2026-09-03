@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EduReview landing page
 
-## Getting Started
+EduReview is a pitch for a student engagement layer for schools in Central Asia, one that reads records a school already has (attendance, submission timing, grade trends) and scores engagement, so students see their effort and institutions spot disengagement before grades drop. The site is that pitch in English, Russian, and Kazakh, with a student waitlist form and an institution pilot form that write to Supabase and send confirmation emails through Resend.
 
-First, run the development server:
+Status: one-off from February 2026, built over two days, live but not maintained. The sibling repo itsaibarr/edu-landing is a Laravel scaffold started the same morning and dropped. This Next.js repo is the one that shipped.
+Live: https://www.sharedureview.site/
 
-```bash
+## Run
+
+```
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Opens on http://localhost:3000 and redirects to /en. The two forms need four env vars in `.env.local` (there is no `.env.example`):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+NEXT_PUBLIC_SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+RESEND_API_KEY=
+RESEND_FROM_EMAIL=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Supabase needs two tables, `waitlist_students` and `pilot_institutions`. The SQL is in `docs/plans/2026-02-24-supabase-email-backend-implementation.md`. Without the env vars the site renders but form submits fail.
 
-## Learn More
+## Layout
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app/[locale]/` page, privacy, terms. `src/app/api/` the two form handlers (waitlist, pilot).
+- `src/components/sections/` one file per landing section, split into student and institution variants.
+- `messages/` en, ru, kk strings via next-intl.
+- `context/` the product brief and reference screenshots the site was built from. `docs/` brand book and per-feature plans.
+- `.agent/` a generic AI-agent toolkit copied in during development. Not part of the site.
