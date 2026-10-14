@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { sql } from '@/lib/db'
 import { sendPilotEmails } from '@/lib/resend'
 
 export async function POST(req: NextRequest) {
@@ -13,12 +13,14 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const { error: dbError } = await supabase
-    .from('pilot_institutions')
-    .insert({ name, role, institution, email, challenge: challenge ?? null, locale })
-
-  if (dbError) {
-    if (dbError.code === '23505') {
+  try {
+    await sql`
+      insert into pilot_institutions (name, role, institution, email, challenge, locale)
+      values (${name}, ${role}, ${institution}, ${email}, ${challenge ?? null}, ${locale})
+    `
+  } catch (dbError: any) {
+    if (dbError?.code === '23505') {
+      // unique_violation — email already exists
       return NextResponse.json(
         { error: 'duplicate' },
         { status: 409 }

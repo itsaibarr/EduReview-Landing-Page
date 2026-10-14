@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { sql } from '@/lib/db'
 import { sendWaitlistEmails } from '@/lib/resend'
 
 export async function POST(req: NextRequest) {
@@ -13,12 +13,13 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const { error: dbError } = await supabase
-    .from('waitlist_students')
-    .insert({ name, email, school, frustration: frustration ?? null, locale })
-
-  if (dbError) {
-    if (dbError.code === '23505') {
+  try {
+    await sql`
+      insert into waitlist_students (name, email, school, frustration, locale)
+      values (${name}, ${email}, ${school}, ${frustration ?? null}, ${locale})
+    `
+  } catch (dbError: any) {
+    if (dbError?.code === '23505') {
       // unique_violation — email already exists
       return NextResponse.json(
         { error: 'duplicate' },
